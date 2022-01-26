@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block loginout %}
+            <div class="col-md-auto" style="height:50px;">
+                <a class="btn btn-info" href="{% url 'mydjangoSoen:index' %}" role="button">ログアウト</a>
+            </div>
+{% endblock %}
+
+{% block nav %}
+    <h2>株式会社 装苑</h2>
+    <h4>装苑</h4>
+    <h5>･工事現場書類</h5>
+    <a href=""><li>施工体制台帳</li></a>
+    <a href=""><li>作業員名簿</li></a>
+    <a href=""><li>各種提出書類</li></a>
+    <h5>･社内書類</h5>
+    <a href=""><li>工事発注届</li></a>
+    <a href=""><li>車両自主点検表</li></a>
+    <a href=""><li>実行予算書作成</li></a>
+    <h5>･社員DB</h5>
+    <a href=""><li>健康診断</li></a>
+    <a href=""><li>保険</li></a>
+    <a href=""><li>資格</li></a>
+    <h5>協力会社DB</h5>
+    <a href=""><li>DB</li></a>
+
+    <a href="{% url 'mydjangoSoen:sub' %}" class="btn btn-primary">Go Sub頁</a>
+{% endblock %}
+
+{% block message %}
+    {{ msg }}
+{% endblock %}
+
+{% block main %}
+
+{% endblock %}
+
+{% block sideB %}
+    <h1>sideB</h1>
+{% endblock %}

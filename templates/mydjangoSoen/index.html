@@ -1,0 +1,103 @@
+{% extends 'base/base.html' %}
+
+{% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'mydjangoSoen:main' %}" role="button">logmain</a>
+        <a class="btn btn-info" href="{% url 'mydjangoSoen:sub' %}" role="button">logsub</a>
+    </div>
+{% endblock %}
+
+{% block nav %}
+    <h2>株式会社 装苑</h2>
+    <h5>装苑</h5>
+    <li>工事現場書類</li>
+    <li>社内書類</li>
+    <li>社員DB</li>
+    <li>協力会社DB</li>
+    <h5>その他</h5>
+    <li>SDGｓ</li>
+    <li>社会制度</li>
+    <li>材料構成</li>
+    <li>考察</li>
+{% endblock %}
+
+{% block message %}
+    {{  }}
+{% endblock %}
+
+{% block main %}
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+        <form action="{% url 'mydjangoSoen:index' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+            </tr>
+            <td><input type="submit" value="ID検索"></td>
+        </form>
+    </table>
+    <hr>
+    {{ msg|safe }}
+    <br>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>IDNAME</th>
+            <th>PW</th>
+        </tr>
+
+        {% for item in data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.pw }}</td>
+            <td><a class="text-bottom" href="{% url 'mydjangoSoen:edit' item.id %}">編集</a></td>
+            <td><a class="text-bottom" href="{% url 'mydjangoSoen:delete' item.id %}">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a class="text-bottom" href="{% url 'mydjangoSoen:create' %}">namepw_create</a>
+    <br>
+    <br>
+    <div class="row mt-100px">
+        <div class="card" style="width: 18rem;">
+            {% load static %}
+            <img src="{% static 'mydjangoSoen/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"
+                 alt="201909写真">
+            <div class="card-body">
+                <h5 class="card-title">装苑</h5>
+                <p class="card-text">
+                <ul>施工体制台帳 作成</ul>
+                <ul>見積作成･実行予算作成</ul>
+                <ul>現場材料手配</ul>
+                <ul>DB他</ul>
+                <br><br><br>
+
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'mydjangoSoen/image/1565872306690.jpg' %}" width="" height="150" class="card-img-top"
+                 alt="1526">
+            <div class="card-body">
+                <h5 class="card-title">その他</h5>
+                <p class="card-text">
+                <ul>SDGｓ</ul>
+                <ul>法定福利費･インボイス</ul>
+                <ul>材料構成</ul>
+                <ul>他</ul>
+                <br><br><br>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sideB %}
+    <h1>sideB</h1>
+    <a class="text-bottom" href="{% url 'm3ch:top' %}">m3ch</a>
+
+{% endblock %}

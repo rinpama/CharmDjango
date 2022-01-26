@@ -1,0 +1,16 @@
+---base/base.html の tag---(block内には　{% load static %}　がそれぞれ必要みたい
+{% extends 'base/base.html' %}
+{% block loginout %}
+{% endblock %}
+{% block nav %}
+{% endblock %}
+{% block message %}
+{% endblock %}
+{% block main %}
+{% endblock %}
+{% block sideB %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+---
