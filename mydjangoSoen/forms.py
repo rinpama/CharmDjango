@@ -1,15 +1,16 @@
 from django import forms
-from .models import IdpwModel
+from .models import IdModel
 
-class IdSearch(forms.Form):  #index
-    id= forms.CharField(label= 'ID', max_length= 15)
 
-class IdpwForm(forms.ModelForm):  #create
+class IdSearch(forms.Form):  # index
+    name = forms.CharField(label='name', max_length=15)
+
+
+class IdForm(forms.ModelForm):  # create
     class Meta:
-        model= IdpwModel
-        widgets= {'pw': forms.SelectDateWidget}
-        fields= ['name', 'pw']
+        model = IdModel
+        widgets = {'date': forms.SelectDateWidget}
+        fields = ['name', 'date']
 # class idpwForm(forms.Form):
 #     name = forms.CharField(label='name', max_length=20)
 #     pw = forms.DateField(label='pw')
-

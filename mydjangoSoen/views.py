@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import IdpwForm, IdSearch
-from .models import IdpwModel
+from .forms import IdForm, IdSearch
+from .models import IdModel
 from django.shortcuts import redirect
 
 
@@ -12,16 +12,16 @@ def index(request):
         'title': "これはINDEX頁",
         'msg': "<h1>All Record !</h1>",
         'form': IdSearch(),  # idpwForm(),
-        'data': [],}
+        'data': [], }
     if (request.method == 'POST'):
-        number = request.POST['id']
-        item = IdpwModel.objects.get(id=number)
+        nametxt = request.POST['name']
+        item = IdModel.objects.get(name=nametxt)
         params['title'] = 'お探しのName一致してますか？'
         params['msg'] = "<h2>your request is ...</h2>"
         params['data'] = [item]
-        params['form'] = IdSearch(request.POST)
+        params['form'] = IdForm(request.POST)
     else:
-        params['data'] = IdpwModel.objects.all()  # model.objects.values('name','pw')
+        params['data'] = IdModel.objects.all()  # model.objects.values('name','pw')
     return render(request, 'mydjangoSoen/index.html', params)
 
 
@@ -29,42 +29,45 @@ def create(request):
     params = {
         'title': "これはCREATE頁",
         'msg': "<h1>Let's Create !</h1>",
-        'form': IdpwForm(),}
+        'form': IdForm(), }
     if (request.method == 'POST'):
         # name = request.POST['name']
         # pw = request.POST['pw']
         # record = IdpwModel(name=name, pw=pw)
-        obj= IdpwModel()
-        record= IdpwForm(request.POSt,instance= obj)
+        obj = IdModel()
+        record = IdForm(request.POST, instance=obj)
         record.save()
         return redirect(to='mydjangoSoen:index')
     return render(request, 'mydjangoSoen/create.html', params)
 
-def edit(request, number):
-    obj = IdpwModel.objects.get(id=number)
-    if (request.method == 'POST'):
-        record=IdpwForm(request.POST,instance= obj)
-        record.save()
-        return redirect(to='mydjangoSoen:index')
-    params={
-        'title': '編集頁っす',
-        'msg': '編集中ね',
-        'form': 'IdpwModel'
-    }
-    return render(request, 'mydjangoSoen/index.html',params)
 
-def delete(request,number):
-    record= IdpwModel.objects.get(id= number)
+def edit(request, number):
+    obj = IdModel.objects.get(id=number)
+    if (request.method == 'POST'):
+        record = IdForm(request.POST, instance=obj)
+        record.save()
+        return redirect(to='mydjangoSoen:edit')
+    params = {
+        'title': '編集頁っす',
+        'msg': str(obj) + '       編集中ね' ,
+        'form': IdForm()
+    }
+    return render(request, 'mydjangoSoen/index.html', params)
+
+
+def delete(request, number):
+    record = IdModel.objects.get(id=number)
     if (request.method == 'POST'):
         record.delete()
         return redirect(to='mydjangoSoen:index')
-    params={
+    params = {
         'title': '削除ぉぉぉぉぉ',
         'msg': '本当 だいじょうぶ？',
         'id': number,
         'obj': record,
     }
-    return render(request,'mydjangoSoen/delete.html', params)
+    return render(request, 'mydjangoSoen/delete.html', params)
+
 
 # @login_required()
 def main(request):

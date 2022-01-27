@@ -1,24 +1,16 @@
-{#---base/base.html の tag---(block内には　{% load static %}　がそれぞれ必要みたい#}
+
 {% extends 'base/base.html' %}
-{#{% block loginout %}#}
-{#{% endblock %}#}
-{#{% block nav %}#}
-{#{% endblock %}#}
-{% block message %}
-    {{ msg|safe }}
-{% endblock %}
+{% load static %}
+
+
 
 {% block main %}
     <table>
     <form action="{% url 'mydjangoSoen:edit' id %}" method="POST">
         {% csrf_token %}
         {{ form.as_table }}
-        <tr><td></td><td><input type="submit" value="登録"></td></tr>
+        <tr><td></td><td><input type="submit" value="編集登録"></td></tr>
     </form>
     </table>
 
 {% endblock %}
-{#{% block sideB %}#}
-{#{% endblock %}#}
-{#{% block footer %}#}
-{#{% endblock %}#}

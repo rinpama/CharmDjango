@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import IdpwModel
+from .models import IdModel
 
 # Register your models here.
-admin.site.register(IdpwModel)
+admin.site.register(IdModel)
