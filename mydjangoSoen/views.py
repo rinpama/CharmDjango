@@ -1,27 +1,29 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import IdForm, IdSearch
-from .models import IdModel
 from django.shortcuts import redirect
+from django.db.models import Q
+
+from .forms import IdForm, IdSearch, FindForm
+from .models import IdModel
 
 
 # Create your views here.
 def index(request):
-    # alldata = IdpwModel.objects.all()
     params = {
         'title': "これはINDEX頁",
         'msg': "<h1>All Record !</h1>",
-        'form': IdSearch(),  # idpwForm(),
+        'form': IdSearch(),
+        'btn1': '検索',
         'data': [], }
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         nametxt = request.POST['name']
         item = IdModel.objects.get(name=nametxt)
         params['title'] = 'お探しのName一致してますか？'
         params['msg'] = "<h2>your request is ...</h2>"
         params['data'] = [item]
-        params['form'] = IdForm(request.POST)
+        params['form'] = IdSearch(request.POST)
     else:
-        params['data'] = IdModel.objects.all()  # model.objects.values('name','pw')
+        params['data'] = IdModel.objects.all()
     return render(request, 'mydjangoSoen/index.html', params)
 
 
@@ -30,10 +32,7 @@ def create(request):
         'title': "これはCREATE頁",
         'msg': "<h1>Let's Create !</h1>",
         'form': IdForm(), }
-    if (request.method == 'POST'):
-        # name = request.POST['name']
-        # pw = request.POST['pw']
-        # record = IdpwModel(name=name, pw=pw)
+    if request.method == 'POST':
         obj = IdModel()
         record = IdForm(request.POST, instance=obj)
         record.save()
@@ -42,31 +41,51 @@ def create(request):
 
 
 def edit(request, number):
+    record = IdModel.objects.get(id=number)
     obj = IdModel.objects.get(id=number)
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         record = IdForm(request.POST, instance=obj)
         record.save()
-        return redirect(to='mydjangoSoen:edit')
+        return redirect(to='mydjangoSoen:index')
     params = {
         'title': '編集頁っす',
-        'msg': str(obj) + '       編集中ね' ,
-        'form': IdForm()
-    }
-    return render(request, 'mydjangoSoen/index.html', params)
+        'msg': str(record) + '       編集中ね',
+        'id': number,
+        'obj': obj,
+        'form': IdForm(), }
+    return render(request, 'mydjangoSoen/edit.html', params)
 
 
 def delete(request, number):
     record = IdModel.objects.get(id=number)
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         record.delete()
         return redirect(to='mydjangoSoen:index')
     params = {
         'title': '削除ぉぉぉぉぉ',
         'msg': '本当 だいじょうぶ？',
         'id': number,
-        'obj': record,
-    }
+        'obj': record, }
     return render(request, 'mydjangoSoen/delete.html', params)
+
+
+def find(request):
+    if request.method == 'POST':
+        msg = '結果はっぴょー'
+        str1 = str(request.POST['findid'])
+        str2 = request.POST['findname']
+        data = IdModel.objects.filter(Q(id_incontains=str1) | Q(name_incontains=str2))
+    else:
+        msg = 'さがそう'
+        form = FindForm()
+        data = IdModel.objects.all()
+    params = {
+        'title': 'ここは、検索頁',
+        'msg': msg,
+        'form': form,
+        'data': data,
+    }
+    return render(request, 'mydjangoSoen/find.html', params)
 
 
 # @login_required()

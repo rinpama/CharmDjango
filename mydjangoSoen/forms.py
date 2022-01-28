@@ -11,6 +11,7 @@ class IdForm(forms.ModelForm):  # create
         model = IdModel
         widgets = {'date': forms.SelectDateWidget}
         fields = ['name', 'date']
-# class idpwForm(forms.Form):
-#     name = forms.CharField(label='name', max_length=20)
-#     pw = forms.DateField(label='pw')
+
+class FindForm(forms.Form):
+    findid=forms.IntegerField(label='ID',required=False)
+    findname= forms.CharField(label='なまえ',max_length=15,required=False)

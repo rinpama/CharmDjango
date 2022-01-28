@@ -1,18 +1,14 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block message %}
-
-{% endblock %}
 
 {% block main %}
-
     <table>
         {{ obj.id }}
         {{ obj.name }}
 
         {{ obj.date }}
-        <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
+        <form aciton="{% url 'mydjangoSoen:delete' id %}" method="POST">
             {% csrf_token %}
             {{ form.as_table }}
             <tr>
@@ -22,5 +18,4 @@
         </form>
     </table>
     {{ msg }}
-
 {% endblock %}

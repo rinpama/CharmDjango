@@ -2,15 +2,15 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-
-
 {% block main %}
+    {{ record }}
+    {{ msg|safe }}
+    <hr>
     <table>
-    <form action="{% url 'mydjangoSoen:edit' id %}" method="POST">
+    <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
         {% csrf_token %}
         {{ form.as_table }}
-        <tr><td></td><td><input type="submit" value="編集登録"></td></tr>
+        <tr><td></td><td><input type="submit",value="編集登録"></td></tr>
     </form>
     </table>
-
 {% endblock %}

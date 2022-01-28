@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block main %}
-    {{ msg|safe }}
+
     <hr>
     <table>
         <tr>
@@ -35,18 +35,18 @@
             <tr>
                 <td></td>
             </tr>
-            <td><input type="submit" value="NAME検索"></td>
+            <td><input type="submit" value={{ btn1 }}></td>
         </form>
     </table>
 
     <hr>
-
+    {{ msg|safe }}
     <br>
     <table>
         <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>DATE</th>
+            <th>ID/</th>
+            <th>NAME/</th>
+            <th>DATE/</th>
         </tr>
 
         {% for item in data %}
@@ -59,7 +59,7 @@
             </tr>
         {% endfor %}
     </table>
-    <a class="text-bottom" href="{% url 'mydjangoSoen:create' %}">IDNAME_create</a>
+    <a class="text-bottom" href="{% url 'mydjangoSoen:create' %}">NAME_create</a>
     <br>
     <br>
 
