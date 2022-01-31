@@ -12,6 +12,7 @@ class IdForm(forms.ModelForm):  # create
         widgets = {'date': forms.SelectDateWidget}
         fields = ['name', 'date']
 
+
 class FindForm(forms.Form):
-    findid=forms.IntegerField(label='ID',required=False)
-    findname= forms.CharField(label='なまえ',max_length=15,required=False)
+    findname = forms.CharField(label='なまえ', max_length=15, required=False)
+    finddate = forms.DateField(label='DATE', required=False)

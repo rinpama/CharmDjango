@@ -24,7 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from .local_settings import SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+try:
+    from CharmDjango.local_settings import *
+except ImportError:
+    pass
+# if not DEBUG:
+#     import django-heroku
+#     django_heroku.settings(locals())
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'm3ch',
     'mydjangoSoen',
 ]
@@ -121,3 +129,7 @@ STATICFILES_DIRS= [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL='/login'
+LOGIN_REDIRECT_URL='/main'
+LOGOUT_REDIRECT_URL=''

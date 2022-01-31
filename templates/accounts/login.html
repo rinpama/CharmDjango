@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block loginout %}
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block main %}
+    <form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+            {{ field }}
+    {% endfor %}
+    <div class="row">
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            <p>{{ error }}</p>
+        </div>
+    {% endfor %}
+
+    <div class="col-xs-4">
+        <button type="submit" class="btn btn-primary btn-block btn-flat">ログイン</button>
+    </div>
+<a class="text-decoration-none" href="{% url 'mydjangoSoen:index' %} "><p>HOME</p></a>
+
+{% endblock %}
+
+{% block sideB %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

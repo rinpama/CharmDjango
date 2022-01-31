@@ -17,10 +17,10 @@ def index(request):
         'data': [], }
     if request.method == 'POST':
         nametxt = request.POST['name']
-        item = IdModel.objects.get(name=nametxt)
+        item = IdModel.objects.filter(Q(name__icontains=nametxt))
         params['title'] = 'お探しのName一致してますか？'
         params['msg'] = "<h2>your request is ...</h2>"
-        params['data'] = [item]
+        params['data'] = item
         params['form'] = IdSearch(request.POST)
     else:
         params['data'] = IdModel.objects.all()
@@ -39,7 +39,7 @@ def create(request):
         return redirect(to='mydjangoSoen:index')
     return render(request, 'mydjangoSoen/create.html', params)
 
-
+@login_required
 def edit(request, number):
     record = IdModel.objects.get(id=number)
     obj = IdModel.objects.get(id=number)
@@ -55,7 +55,7 @@ def edit(request, number):
         'form': IdForm(), }
     return render(request, 'mydjangoSoen/edit.html', params)
 
-
+@login_required
 def delete(request, number):
     record = IdModel.objects.get(id=number)
     if request.method == 'POST':
@@ -72,9 +72,10 @@ def delete(request, number):
 def find(request):
     if request.method == 'POST':
         msg = '結果はっぴょー'
-        str1 = str(request.POST['findid'])
-        str2 = request.POST['findname']
-        data = IdModel.objects.filter(Q(id_incontains=str1) | Q(name_incontains=str2))
+        form = FindForm()
+        str1 = request.POST['findname']
+        str2 = str(request.POST['finddate'])
+        data = IdModel.objects.filter(Q(name__icontains=str1)|Q(date__icontains=str2))
     else:
         msg = 'さがそう'
         form = FindForm()
@@ -88,7 +89,7 @@ def find(request):
     return render(request, 'mydjangoSoen/find.html', params)
 
 
-# @login_required()
+@login_required()
 def main(request):
     params = {
         'title': "これはmain頁",
@@ -96,7 +97,7 @@ def main(request):
     return render(request, 'mydjangoSoen/main.html', params)
 
 
-# @login_required()
+@login_required()
 def sub(request):
     params = {
         'title': "これはsub頁",
