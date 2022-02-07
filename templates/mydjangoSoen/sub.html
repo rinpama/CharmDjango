@@ -1,28 +1,48 @@
 {% extends 'base/base.html' %}
 
 {% block loginout %}
-            <div class="col-md-auto" style="height:50px;">
-                <a class="btn btn-info" href="{% url 'mydjangoSoen:index' %}" role="button">ログアウト</a>
-            </div>
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'mydjangoSoen:index' %}" role="button">ログアウト</a>
+    </div>
 {% endblock %}
 
 {% block nav %}
     <h2>株式会社 装苑</h2>
     <h4>その他</h4>
     <h5>･SDGs</h5>
-    <a href=""><li>ｿｴﾝSDGs</li></a>
-    <a href=""><li>SDGsとは</li></a>
-    <a href=""><li>長崎県SDGS企業登録</li></a>
+    <a href="">
+        <li>ｿｴﾝSDGs</li>
+    </a>
+    <a href="">
+        <li>SDGsとは</li>
+    </a>
+    <a href="">
+        <li>長崎県SDGS企業登録</li>
+    </a>
     <h5>･社会制度</h5>
-    <a href=""><li>法定福利費</li></a>
-    <a href=""><li>インボイス制度</li></a>
-    <a href=""><li>健康･年金保険･建退協</li></a>
+    <a href="">
+        <li>法定福利費</li>
+    </a>
+    <a href="">
+        <li>インボイス制度</li>
+    </a>
+    <a href="">
+        <li>健康･年金保険･建退協</li>
+    </a>
     <h5>･材料構成</h5>
-    <a href=""><li>材料構成</li></a>
-    <a href=""><li>部材特徴</li></a>
-    <a href=""><li>材料価格DB</li></a>
+    <a href="">
+        <li>材料構成</li>
+    </a>
+    <a href="">
+        <li>部材特徴</li>
+    </a>
+    <a href="">
+        <li>材料価格DB</li>
+    </a>
     <h5>考察</h5>
-    <a href="{% url 'm3ch:top' %}"><li>いろいろ</li></a>
+    <a href="{% url 'm3ch:top' %}">
+        <li>いろいろ</li>
+    </a>
 
     <a href="{% url 'mydjangoSoen:main' %}" class="btn btn-primary">Go main頁</a>
 {% endblock %}

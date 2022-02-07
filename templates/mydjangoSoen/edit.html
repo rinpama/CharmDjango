@@ -1,4 +1,3 @@
-
 {% extends 'base/base.html' %}
 {% load static %}
 
@@ -7,10 +6,13 @@
     {{ msg|safe }}
     <hr>
     <table>
-    <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_table }}
-        <tr><td></td><td><input type="submit",value="編集登録"></td></tr>
-    </form>
+        <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td><input type="submit" ,value="編集登録"></td>
+            </tr>
+        </form>
     </table>
 {% endblock %}
