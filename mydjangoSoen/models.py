@@ -10,6 +10,7 @@ class IdModel(models.Model):
     def __str__(self):
         return " NAME : " + self.name + "<br> DATE : " + str(self.date)
 
+
 class PostModel(models.Model):
     title=models.CharField(max_length=20)
     text=MarkdownxField('本文',help_text='MarkDown形式で入力してください')

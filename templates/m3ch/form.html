@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{#{% block header %}#}
+{#{% endblock %}#}
+{##}
+{#{% block loginout %}#}
+{#{% endblock %}#}
+{##}
+{#{% block nav %}#}
+{#{% endblock %}#}
+
+{% block main %}
+<a href="{% url 'm3ch:index' %}" >index頁</a>
+    <form action="{% url 'm3ch:add_form' %}" method="POST" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ form.media }}
+    <button type='submit'>投稿</button>
+    </form>
+
+{% endblock %}
+
+{#{% block sideB %}#}
+{#{% endblock %}#}
+{##}
+{#{% block footer %}#}
+{#{% endblock %}#}
