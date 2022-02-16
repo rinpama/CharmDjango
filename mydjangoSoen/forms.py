@@ -9,10 +9,10 @@ class IdSearch(forms.Form):  # index
 class IdForm(forms.ModelForm):  # create
     class Meta:
         model = IdModel
-        widgets = {'date': forms.SelectDateWidget}
-        fields = ['name', 'date']
-
+        # widgets = {'date': forms.SelectDateWidget}
+        fields ='__all__'
+        # ['name', 'date']
 
 class FindForm(forms.Form):
-    findname = forms.CharField(label='なまえ', max_length=15, required=False)
-    finddate = forms.DateField(label='DATE', required=False)
+    findname = forms.CharField(label='なまえ', max_length=30, required=False)
+    findadd = forms.CharField(label='アドレス',max_length=60, required=False)

@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block main %}
+    {{ idmodel.id }}
+    {{ idmodel.name }}
+    {{ idmodel.add }}
+    {% for more in idmodel.mroedetail.all %}
+        {{ more.bloodtype }}
+        {{ more.age }}
+{#        {{ more.IdModel }}#}
+    {% endfor %}
+
+
+    <a class="text-bottom" href="{% url 'mydjangoSoen:index' %}">index</a><br>
+{% endblock %}

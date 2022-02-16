@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block main %}
-    {{ record }}
-    {{ msg|safe }}
+    {{ msg|safe }}<br>
+    {{ record.name }}<br>
+    {{ record.add }}<br>
     <hr>
     <table>
         <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
@@ -11,8 +12,9 @@
             {{ form.as_table }}
             <tr>
                 <td></td>
-                <td><input type="submit" ,value="編集登録"></td>
+                <td><input type="submit" value="編集登録"></td>
             </tr>
         </form>
     </table>
+    <a class="text-bottom" href="{% url 'mydjangoSoen:main' %}">Main</a><br>
 {% endblock %}

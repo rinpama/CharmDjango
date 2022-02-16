@@ -14,24 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include,re_path
-# from . import settings
+from django.urls import path, include, re_path
+
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('accounts/', include('accounts.urls')),
-                  path('', include('mydjangoSoen.urls')),
-                  path('m3ch/', include('m3ch.urls')),
-                  path('markdownx/', include('markdownx.urls')),]
-# ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
-# if settings.DEBUG:
-#     urlpatterns += static(
-#         settings.MEDIA_URL,
-#         document_root=settings.MEDIA_ROOT
-#     )
-# 開発環境でのメディアファイルの配信設定
+    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
+    path('', include('mydjangoSoen.urls')),
+    path('m3ch/', include('m3ch.urls')),
+    path('summernote/', include('django_summernote.urls')),
+    path('markdownx/', include('markdownx.urls')),
+
+]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+# 開発環境でのメディアファイルの配信設定 if settings.DEBUG:
 urlpatterns += static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT

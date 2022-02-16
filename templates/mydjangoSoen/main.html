@@ -43,19 +43,45 @@
     <a href="">
         <li>DB</li>
     </a>
-
     <a href="{% url 'mydjangoSoen:sub' %}" class="btn btn-primary">Go Sub頁</a>
 {% endblock %}
 
-{% block message %}
-    {{ msg }}
-{% endblock %}
-
 {% block main %}
+    {#<img class="d-block mx-auto" src="static/mydjangoSoen/image/IMG_4861.jpg" alt="サンプル画像" style="width:750px;">#}
+    {#    <hr>#}
 
+    <table>
+        <form action="{% url 'mydjangoSoen:main' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <tr>
+                <td></td>
+                <td><input type="submit" value="検索"</td>
+            </tr>
+        </form>
+    </table>
+    <hr>
+    {{ msg|safe }}
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>ADD</th>
+        </tr>
+
+        {% for item in data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.add }}</td>
+                <td><a href="{% url 'mydjangoSoen:edit' item.id %}">編集</a></td>
+                <td><a href="{% url 'mydjangoSoen:delete' item.id %}">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a class="text-bottom" href="{% url 'mydjangoSoen:create' %}">NewCreate</a><br>
 {% endblock %}
 
 {% block sideB %}
-    <h1>sideB</h1>
-    <a class="text-bottom" href="{% url 'm3ch:top' %}">m3ch</a>
+    <a class="text-bottom" href="{% url 'm3ch:top' %}">m3ch</a><br>
 {% endblock %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
     'markdownx',
     'accounts',
     'm3ch',
@@ -125,7 +126,12 @@ STATICFILES_DIRS = [
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# else:
+#     PROJECT_NAME = os.path.basename(BASE_DIR)
+#     # ↓ は一般的なLinuxサーバーにデプロイする場合のパス。クラウドにデプロイする場合、下記は要修正。
+#     MEDIA_ROOT = "/var/www/{}/media".format(PROJECT_NAME)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -142,6 +148,9 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
     # テーブル'markdown.extensions.tables'
     'tables',
 ]
-MARKDOWNX_IMAGE_MAX_SIZE={
-    'size':(500,500),'quality':90
+MARKDOWNX_IMAGE_MAX_SIZE = {
+    'size': (500, 500), 'quality': 90
 }
+
+SUMMERNOTE_THEME = 'bs4'
+X_FRAME_OPTOPNS = 'SAMEORIGIN'

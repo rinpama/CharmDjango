@@ -1,11 +1,12 @@
 from django.urls import path, include
 from . import views
 
-app_name='m3ch'
+app_name = 'm3ch'
 urlpatterns = [
     path('top/', views.top, name='top'),
-    path('index/',views.index,name='index'),
-    path('detail/<int:blog_id>/',views.detail,name='detail'),
-    path('add_form',views.add_form,name='add_form'),
+    path('index/', views.index, name='index'),
+    path('detail/<int:blog_id>/', views.detail, name='detail'),
+    path('delete/<int:blog_id>/', views.delete, name='delete'),
+    path('add_form', views.add_form, name='add_form'),
 
 ]

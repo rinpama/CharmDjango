@@ -4,7 +4,7 @@
 {% block loginout %}
     <div class="col-md-auto" style="height:50px;">
         <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>
-{#        <a class="btn btn-info" href="{% url 'mydjangoSoen:sub' %}" role="button">logsub</a>#}
+        {#        <a class="btn btn-info" href="{% url 'mydjangoSoen:sub' %}" role="button">logsub</a>#}
     </div>
 {% endblock %}
 
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block main %}
-
+    <img class="d-block mx-auto" src="static/mydjangoSoen/image/IMG_4861.jpg" alt="サンプル画像" style="width:750px;">
     <hr>
     <table>
         <tr>
@@ -38,28 +38,32 @@
             <td><input type="submit" value={{ btn1 }}></td>
         </form>
     </table>
-
     <hr>
     {{ msg|safe }}
     <br>
-    <table>
+    <table class='table table-striped' >
         <tr>
-            <th>ID/</th>
-            <th>NAME/</th>
-            <th>DATE/</th>
+            <th class="table-primary">NAME/</th>
         </tr>
-
         {% for item in data %}
             <tr>
-                <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.date }}</td>
-{#                <td><a class="text-bottom" href="{% url 'mydjangoSoen:edit' item.id %}">編集</a></td>#}
-{#                <td><a class="text-bottom" href="{% url 'mydjangoSoen:delete' item.id %}">削除</a></td>#}
+            </tr>
+        {% endfor %}
+        {% for fin in finded %}
+            <tr>
+                <td>{{ fin.id }}</td>
+                <td>{{ fin.name }}</td>
+                <td><a href="{% url 'mydjangoSoen:detail' pk=fin.id %}">詳細</a></td>
             </tr>
         {% endfor %}
     </table>
+
     <a class="btn btn-outline-primary text-right" href="{% url 'mydjangoSoen:create' %}" role="button">Name_Create</a>
+    <br>
+    <br>
+    <a class="text-bottom" href="{% url 'mydjangoSoen:index' %}">Home</a>
+    <br>
     <br>
     <br>
 

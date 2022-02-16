@@ -5,11 +5,12 @@
     <tale>
         <form action="{% url 'mydjangoSoen:create' %}" method="POST">
             {% csrf_token %}
-            {{ form.as_table }}
+            {{ form.as_p }}
             <tr>
                 <td></td>
                 <td><input type="submit" value="登録"></td>
             </tr>
         </form>
     </tale>
+    <a class="text-bottom" href="{% url 'mydjangoSoen:index' %}">Home</a><br>
 {% endblock %}

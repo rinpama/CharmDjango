@@ -1,7 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-
 {% block header %}
     <header>
         <div class="row " style="background-color:#059b08; height:50px;">
@@ -22,29 +21,20 @@
     </header>
 {% endblock %}
 
-{#{% block loginout %}#}
-{#{% endblock %}#}
-{##}
-{#{% block nav %}#}
-{#{% endblock %}#}
-
 {% block main %}
-    <div class="detail_field">
-        <h1>{{ blog_text.title }}</h1>
-        <p>{{ blog_text.updated_at }}</p>
-        <div class="markdownx">
-            {{ blog_text.get_text_mark_down | safe }}<hr />
-            </br>
-        </div>
-        <a href="{% url 'm3ch:top' %}">Topに戻る</a>
-        <br>
-        <a href="{% url 'm3ch:index' %}">indexに戻る</a>
-    </div>
-    {{ form.media }}
-{% endblock %}
+    <table>
+        {{ obj.id }}
+        {{ obj.title }}
 
-{#{% block sideB %}#}
-{#{% endblock %}#}
-{##}
-{#{% block footer %}#}
-{#{% endblock %}#}
+        {{ obj.date }}
+        <form aciton="{% url 'm3ch:delete' id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td><input type="submit" , value="削除"></td>
+            </tr>
+        </form>
+    </table>
+    {{ msg }}
+{% endblock %}

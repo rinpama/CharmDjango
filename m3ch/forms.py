@@ -7,7 +7,7 @@ from markdownx.widgets import MarkdownxWidget
 class Blogform(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ('title', 'text')
-        widget = {
-            'text': MarkdownxWidget(),
+        fields = '__all__'
+        widgets = {
+            'text': MarkdownxWidget(attrs={'class': 'textarea'}),
         }

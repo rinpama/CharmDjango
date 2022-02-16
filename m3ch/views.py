@@ -30,6 +30,18 @@ def detail(request, blog_id):
     }
     return render(request, 'm3ch/detail.html', context)
 
+def delete(request, blog_id):
+    record = get_object_or_404(Blog, id=blog_id)
+    if request.method == 'POST':
+        record.delete()
+        return redirect(to='m3ch:index')
+    params = {
+        'title': '削除ぉぉぉぉぉ',
+        'msg': '本当 だいじょうぶ？',
+        'id': blog_id,
+        'obj': record, }
+    return render(request, 'm3ch/delete.html', params)
+
 
 def add_form(request):
     if request.method == 'POST':
