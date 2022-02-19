@@ -18,7 +18,7 @@ class Blog(models.Model):
         return self.title
     class Meta:
         verbose_name='ブログ'
-        verbose_name_plural='ブログう'
+        verbose_name_plural='ブログ'
 
 # summernoteModel
 class ImageBlog(models.Model):
@@ -29,5 +29,5 @@ class ImageBlog(models.Model):
     def __str__(self):
         return self.title
     class Meta:
-        verbose_name = 'ブログ'
-        verbose_name_plural = 'プログ'
+        verbose_name = 'mIMブログ'
+        verbose_name_plural = 'mimプログ'

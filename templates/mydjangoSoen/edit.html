@@ -10,6 +10,8 @@
         <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
             {% csrf_token %}
             {{ form.as_table }}
+{##}
+{#            {{ form2.as_table }}#}
             <tr>
                 <td></td>
                 <td><input type="submit" value="編集登録"></td>

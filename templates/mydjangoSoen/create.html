@@ -6,8 +6,9 @@
         <form action="{% url 'mydjangoSoen:create' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
+            {{ form2.as_p }}
+            {{ form3.as_p }}
             <tr>
-                <td></td>
                 <td><input type="submit" value="登録"></td>
             </tr>
         </form>

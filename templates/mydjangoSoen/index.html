@@ -40,23 +40,31 @@
     </table>
     <hr>
     {{ msg|safe }}
-    <br>
-    <table class='table table-striped' >
+
+    <table class='table table-striped'>
         <tr>
-            <th class="table-primary">NAME/</th>
+            <th class="table-primary">NAME</th>
         </tr>
-        {% for item in data %}
-            <tr>
-                <td>{{ item.name }}</td>
-            </tr>
-        {% endfor %}
-        {% for fin in finded %}
-            <tr>
-                <td>{{ fin.id }}</td>
-                <td>{{ fin.name }}</td>
-                <td><a href="{% url 'mydjangoSoen:detail' pk=fin.id %}">詳細</a></td>
-            </tr>
-        {% endfor %}
+        {% if finded %}
+            {% for fin in finded %}
+                <tr>
+                    <td>{{ fin.id }}</td>
+                    <td>{{ fin.name }}</td>
+                    <td>{{ fin.add }}</td>
+                    <td>{{ fin.moredetais.age }}</td>
+
+                    <td><a href="{% url 'mydjangoSoen:detail' pk=fin.id %}">詳細</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.add }}</td>
+
+                </tr>
+            {% endfor %}
+        {% endif %}
     </table>
 
     <a class="btn btn-outline-primary text-right" href="{% url 'mydjangoSoen:create' %}" role="button">Name_Create</a>

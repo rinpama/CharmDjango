@@ -4,8 +4,8 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from django.views.generic import DetailView
 
-from .forms import IdForm, IdSearch, FindForm
-from .models import IdModel
+from .forms import IdSearch, FindForm, IdForm, IddetailForm, BlogForm
+from .models import IdModel, Iddetail, BlogModel
 
 
 # Create your views here.
@@ -27,36 +27,56 @@ def index(request):
         params['data'] = IdModel.objects.all()
     return render(request, 'mydjangoSoen/index.html', params)
 
-class IdModelDetail(DetailView):
-    model=IdModel
-    context_object_name = 'idmodel'
-    template_name = 'mydjangoSoen/detail.html'
+
+def VIddetail(request, pk):
+    record = IdModel.objects.get(pk=pk)
+    params = {
+        'title': '詳細頁',
+        'msg': "<h1>Let's show me!</h1>",
+        # 'form': IdForm(instance=record),
+        'record': record,
+    }
+    return render(request, 'mydjangoSoen/detail.html', params)
+
+
+# class IdModelDetail(DetailView):
+#     model = IdModel  # ,Iddetail,BlogModel
+#     context_object_name = 'idmodel'
+#     template_name = 'mydjangoSoen/detail.html'
+
 
 def create(request):
     params = {
         'title': "これはCREATE頁",
         'msg': "<h1>Let's Create !</h1>",
-        'form': IdForm(), }
+        'form': IdForm(),
+    }
     if request.method == 'POST':
         obj = IdModel()
         record = IdForm(request.POST, instance=obj)
-        record.save()
-        return redirect(to='mydjangoSoen:index')
+        if record.is_valid():
+            record.save()
+            return redirect(to='mydjangoSoen:index')
     return render(request, 'mydjangoSoen/create.html', params)
 
 
 @login_required
 def edit(request, number):
-    record = IdModel.objects.get(id=number)
+    obj = IdModel.objects.get(id=number)
+    # var = obj.details  #Iddetails
+
     params = {
         'title': '編集頁っす',
         'msg': '編集中ね',
-        'record': record,
+        'record': obj,
         'id': number,
-        'form': IdForm(instance=record), }
+        'form': IdForm(instance=obj)}
     if request.method == 'POST':
-        record = IdForm(request.POST, instance=record)
-        record.save()
+        record = IdForm(request.POST, instance=obj)
+        if record.is_valid():
+            record.save()
+            detai=Iddetail(request.POST,IdModel=obj)
+            detai.save()
         return redirect(to='mydjangoSoen:main')
     return render(request, 'mydjangoSoen/edit.html', params)
 
