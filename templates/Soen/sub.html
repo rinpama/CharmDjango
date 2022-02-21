@@ -2,7 +2,7 @@
 
 {% block loginout %}
     <div class="col-md-auto" style="height:50px;">
-        <a class="btn btn-info" href="{% url 'mydjangoSoen:index' %}" role="button">ログアウト</a>
+        <a class="btn btn-info" href="{% url 'Soen:Vindex' %}" role="button">ログアウト</a>
     </div>
 {% endblock %}
 
@@ -44,7 +44,7 @@
         <li>いろいろ</li>
     </a>
 
-    <a href="{% url 'mydjangoSoen:main' %}" class="btn btn-primary">Go main頁</a>
+    <a href="{% url 'Soen:Vmain' %}" class="btn btn-primary">Go main頁</a>
 {% endblock %}
 
 {% block message %}
@@ -57,5 +57,5 @@
 
 {% block sideB %}
     <h1>sideB</h1>
-    <a class="text-bottom" href="{% url 'mydjangoSoen:main' %}">main</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">main</a><br>
 {% endblock %}

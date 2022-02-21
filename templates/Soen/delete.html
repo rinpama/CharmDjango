@@ -8,7 +8,7 @@
         {{ obj.name }}
 
         {{ obj.date }}
-        <form aciton="{% url 'mydjangoSoen:delete' id %}" method="POST">
+        <form aciton="{% url 'Soen:Vdelete' id %}" method="POST">
             {% csrf_token %}
             {{ form.as_table }}
             <tr>

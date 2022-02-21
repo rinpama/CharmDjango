@@ -43,7 +43,7 @@
     <a href="">
         <li>DB</li>
     </a>
-    <a href="{% url 'mydjangoSoen:sub' %}" class="btn btn-primary">Go Sub頁</a>
+    <a href="{% url 'Soen:Vsub' %}" class="btn btn-primary">Go Sub頁</a>
 {% endblock %}
 
 {% block main %}
@@ -51,7 +51,7 @@
     {#    <hr>#}
 
     <table>
-        <form action="{% url 'mydjangoSoen:main' %}" method="POST">
+        <form action="{% url 'Soen:Vmain' %}" method="POST">
             {% csrf_token %}
             {{ form }}
             <tr>
@@ -74,12 +74,13 @@
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.add }}</td>
-                <td><a href="{% url 'mydjangoSoen:edit' item.id %}">編集</a></td>
-                <td><a href="{% url 'mydjangoSoen:delete' item.id %}">削除</a></td>
+                <td><a href="{% url 'Soen:Vedit' item.id %}">編集</a></td>
+                <td><a href="{% url 'Soen:Vdelete' item.id %}">削除</a></td>
             </tr>
         {% endfor %}
     </table>
-    <a class="text-bottom" href="{% url 'mydjangoSoen:create' %}">NewCreate</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vcreate' %}">NewCreate</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">ここmain</a><br>
 {% endblock %}
 
 {% block sideB %}

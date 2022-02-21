@@ -19,11 +19,10 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    path('', include('mydjangoSoen.urls')),
+    path('', include('Soen.urls')),
     path('m3ch/', include('m3ch.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('markdownx/', include('markdownx.urls')),

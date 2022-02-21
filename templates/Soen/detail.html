@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+    {{ msg|safe }}<br>
+    {{ record.name }}<br>
+    {{ record.add }}<br>
+    {{ record.tel }}<br>
+    {% for rec in record.detail.all %}
+        {{ rec.age }}<br>
+        {{ rec.bloodtype }}<br>
+    {% endfor %}
+
+    {% for reco in record.blog.all %}
+        {{ reco.title }}<br>
+        {{ reco.text|safe }}
+    {% endfor %}
+
+
+
+    <br> <a class="text-bottom" href="{% url 'Soen:Vindex' %}">index</a><br>
+{% endblock %}

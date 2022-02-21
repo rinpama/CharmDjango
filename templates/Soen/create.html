@@ -3,7 +3,7 @@
 
 {% block main %}
     <tale>
-        <form action="{% url 'mydjangoSoen:create' %}" method="POST">
+        <form action="{% url 'Soen:Vcreate' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             {{ form2.as_p }}
@@ -13,5 +13,5 @@
             </tr>
         </form>
     </tale>
-    <a class="text-bottom" href="{% url 'mydjangoSoen:index' %}">Home</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vindex' %}">Home</a><br>
 {% endblock %}

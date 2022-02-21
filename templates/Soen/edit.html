@@ -7,16 +7,16 @@
     {{ record.add }}<br>
     <hr>
     <table>
-        <form aciton="{% url 'mydjangoSoen:edit' id %}" method="POST">
+        <form aciton="{% url 'Soen:Vedit' id %}" method="POST">
             {% csrf_token %}
-            {{ form.as_table }}
-{##}
-{#            {{ form2.as_table }}#}
+            {{ form.as_table }}<br>
+            {{ form2.as_table }}<br>
+            {{ form3.as_table }}<br>
             <tr>
                 <td></td>
                 <td><input type="submit" value="編集登録"></td>
             </tr>
         </form>
     </table>
-    <a class="text-bottom" href="{% url 'mydjangoSoen:main' %}">Main</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">Main</a><br>
 {% endblock %}

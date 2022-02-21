@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'markdownx',
     'accounts',
     'm3ch',
-    'mydjangoSoen',
+    'Soen',
 
 ]
 
