@@ -9,16 +9,41 @@
 
 {% block nav %}
     <h2>株式会社 装苑</h2>
-    <h5>装苑</h5>
-    <li>工事現場書類</li>
-    <li>社内書類</li>
-    <li>社員DB</li>
-    <li>協力会社DB</li>
-    <h5>その他</h5>
-    <li>SDGｓ</li>
-    <li>社会制度</li>
-    <li>材料構成</li>
-    <li>考察</li>
+    <h4>装苑</h4>
+    <h5>･工事現場書類</h5>
+    <a href="{% url 'Show:VsekoList' %}">
+        <li>施工体制台帳</li>
+    </a>
+    <a href="">
+        <li>作業員名簿</li>
+    </a>
+    <a href="">
+        <li>各種提出書類</li>
+    </a>
+    <h5>･社内書類</h5>
+    <a href="">
+        <li>工事発注届</li>
+    </a>
+    <a href="">
+        <li>車両自主点検表</li>
+    </a>
+    <a href="">
+        <li>実行予算書作成</li>
+    </a>
+    <h5>･社員DB</h5>
+    <a href="">
+        <li>健康診断</li>
+    </a>
+    <a href="">
+        <li>保険</li>
+    </a>
+    <a href="">
+        <li>資格</li>
+    </a>
+    <h5>協力会社DB</h5>
+    <a href="">
+        <li>DB</li>
+    </a>
 {% endblock %}
 
 {% block main %}
@@ -60,7 +85,6 @@
                 <tr>
                     <td>{{ item.name }}</td>
                     <td>{{ item.add }}</td>
-
                 </tr>
             {% endfor %}
         {% endif %}

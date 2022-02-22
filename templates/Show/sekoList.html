@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{#{% block header %}#}
+{#{% endblock %}#}
+{##}
+{#{% block loginout %}#}
+{#{% endblock %}#}
+{##}
+{#{% block nav %}#}
+{#{% endblock %}#}
+
+{% block main %}
+    {{ msg }}
+
+    <table class="table">
+        <tr>
+            <th>現場名</th>
+            <th>ｾﾞﾈｺﾝ名</th>
+            <th>所長名</th>
+        </tr>
+        {% for da in data %}
+            <tr>
+                <td>{{ da.AsName }}</td>
+                <td>{{ da.AsCompany }}</td>
+                <td>{{ da.AsManager }}</td>
+                <td></td>
+                <td></td>
+                <td><a href="{% url 'Show:Vsekoedit' da.id %}">詳細編集</a></td>
+                <td><a href="{% url 'Show:Vsekodelete' da.id %}">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <hr>
+    <br>
+    <h3>
+        <簡易>現場の作成
+    </h3>
+    <form action="{% url 'Show:VsekoList' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form2.as_p }}
+        <input type="submit" value="簡易登録">
+    </form>
+{% endblock %}
+
+{#{% block sideB %}#}
+{#{% endblock %}#}
+{##}
+{#{% block footer %}#}
+{#{% endblock %}#}

@@ -4,10 +4,9 @@
 
 {% block main %}
     <table>
-        {{ obj.id }}
-        {{ obj.name }}
-
-        {{ obj.date }}
+        {{ obj.id }}<br>
+        {{ obj.name }}<br>
+        {{ obj.add }}<br>
         <form aciton="{% url 'Soen:Vdelete' id %}" method="POST">
             {% csrf_token %}
             {{ form.as_table }}
@@ -18,4 +17,7 @@
         </form>
     </table>
     {{ msg }}
+    <hr>
+    <p>やっぱり削除しない！　</p>
+    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">main</a><br>
 {% endblock %}

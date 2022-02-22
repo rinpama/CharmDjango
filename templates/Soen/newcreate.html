@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block main %}
+    <tale>
+        <form action="{% url 'Soen:Vnewcreate' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form2.as_p }}
+            {{ form3.as_p }}
+            <tr>
+                <td><input type="submit" value="登録"></td>
+            </tr>
+        </form>
+    </tale>
+    <a class="text-bottom" href="{% url 'Soen:Vindex' %}">Home</a><br>
+{% endblock %}

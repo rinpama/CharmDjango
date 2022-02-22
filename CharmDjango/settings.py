@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     'm3ch',
     'Soen',
+'Show',
 
 ]
 

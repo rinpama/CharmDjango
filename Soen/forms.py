@@ -9,14 +9,19 @@ class FindForm(forms.Form):
     findname = forms.CharField(label='なまえ', max_length=30, required=False)
     findadd = forms.CharField(label='アドレス',max_length=60, required=False)
 
+# class NewMemberF(forms.ModelForm):
+#     bloodtype = forms.CharField(max_length=5)
+#     age = forms.IntegerField()
+#     title = forms.CharField(max_length=50)
+#     text = forms.CharField(widget=SummernoteWidget())
+#     class Meta:
+#         model = MemberM
+#         fields =['name','add','tel','bloodtype','age','title','text']
+
+
 class MemberF(forms.ModelForm):
-    # bloodtype = forms.CharField(max_length=5)
-    # age = forms.IntegerField()
-    # title = forms.CharField(max_length=50)
-    # text = forms.CharField(widget=SummernoteWidget())
     class Meta:
         model = MemberM
-        # fields =['name','add','tel','bloodtype','age','title','text']
         fields='__all__'
 
 

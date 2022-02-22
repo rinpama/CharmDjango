@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{#{% block header %}#}
+{#{% endblock %}#}
+{##}
+{#{% block loginout %}#}
+{#{% endblock %}#}
+{##}
+{#{% block nav %}#}
+{#{% endblock %}#}
+
+{% block main %}
+    {{ msg }}
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+        <form action="{% url 'Show:Vnewsekotai' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            {{ form2.as_table }}
+            <tr>
+                <td></td>
+            </tr>
+            <td><input type="submit" value='登録'></td>
+        </form>
+    </table>
+
+{% endblock %}
+
+{#{% block sideB %}#}
+{#{% endblock %}#}
+{##}
+{#{% block footer %}#}
+{#{% endblock %}#}
