@@ -7,7 +7,52 @@
 {% endblock %}
 
 {% block nav %}
-    <h2>株式会社 装苑</h2>
+    <a href="{% url 'Soen:Vmain' %}" class="btn btn-primary">Go main頁</a>
+{% endblock %}
+
+
+{% block main %}
+        <h2>株式会社 装苑</h2>
+    <h4>装苑</h4>
+    <a href="{% url 'Soen:Vsub' %}">
+        <li>SoenMember</li>
+    </a>
+    <h5>･工事現場書類</h5>
+    <a href="">
+        <li>施工体制台帳</li>
+    </a>
+    <a href="">
+        <li>作業員名簿</li>
+    </a>
+    <a href="">
+        <li>各種提出書類</li>
+    </a>
+    <h5>･社内書類</h5>
+    <a href="">
+        <li>工事発注届</li>
+    </a>
+    <a href="">
+        <li>車両自主点検表</li>
+    </a>
+    <a href="">
+        <li>実行予算書作成</li>
+    </a>
+    <h5>･社員DB</h5>
+    <a href="">
+        <li>健康診断</li>
+    </a>
+    <a href="">
+        <li>保険</li>
+    </a>
+    <a href="">
+        <li>資格</li>
+    </a>
+    <h5>協力会社DB</h5>
+    <a href="">
+        <li>DB</li>
+    </a>
+
+
     <h4>その他</h4>
     <h5>･SDGs</h5>
     <a href="">
@@ -43,16 +88,6 @@
     <a href="{% url 'm3ch:top' %}">
         <li>いろいろ</li>
     </a>
-
-    <a href="{% url 'Soen:Vmain' %}" class="btn btn-primary">Go main頁</a>
-{% endblock %}
-
-{% block message %}
-    {{ msg }}
-{% endblock %}
-
-{% block main %}
-
 {% endblock %}
 
 {% block sideB %}

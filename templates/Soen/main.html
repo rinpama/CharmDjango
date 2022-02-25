@@ -1,88 +1,87 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
-{% block loginout %}
-    <div class="col-md-auto" style="height:50px;">
-        <a class="btn btn-info" href="{% url 'accounts:logout' %}" role="button">logout</a>
-    </div>
+{% block header %}
+    <header>
+        <div class="row " style="background-color:#059b08; height:50px;">
+            <div class="col text-primary">
+                <a class="text-decoration-none" href="{% url 'Soen:Vmain' %} "><h1>Soen</h1></a>
+            </div>
+{#            {% block loginout %}#}
+{#            {% endblock %}#}
+            <div class="col col-lg-2">
+                <h5 class="text-end">twelve
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-reception-4" viewBox="0 0 16 16">
+                        <path d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-11z"/>
+                    </svg>
+                </h5>
+            </div>
+        </div>
+    </header>
 {% endblock %}
 
 {% block nav %}
-    <h2>株式会社 装苑</h2>
-    <h4>装苑</h4>
-    <h5>･工事現場書類</h5>
-    <a href="">
-        <li>施工体制台帳</li>
-    </a>
-    <a href="">
-        <li>作業員名簿</li>
-    </a>
-    <a href="">
-        <li>各種提出書類</li>
-    </a>
-    <h5>･社内書類</h5>
-    <a href="">
-        <li>工事発注届</li>
-    </a>
-    <a href="">
-        <li>車両自主点検表</li>
-    </a>
-    <a href="">
-        <li>実行予算書作成</li>
-    </a>
-    <h5>･社員DB</h5>
-    <a href="">
-        <li>健康診断</li>
-    </a>
-    <a href="">
-        <li>保険</li>
-    </a>
-    <a href="">
-        <li>資格</li>
-    </a>
-    <h5>協力会社DB</h5>
-    <a href="">
-        <li>DB</li>
-    </a>
     <a href="{% url 'Soen:Vsub' %}" class="btn btn-primary">Go Sub頁</a>
 {% endblock %}
 
+
 {% block main %}
-    {#<img class="d-block mx-auto" src="static/mydjangoSoen/image/IMG_4861.jpg" alt="サンプル画像" style="width:750px;">#}
-    {#    <hr>#}
-
-    <table>
-        <form action="{% url 'Soen:Vmain' %}" method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <tr>
-                <td></td>
-                <td><input type="submit" value="検索"</td>
-            </tr>
-        </form>
-    </table>
-    <hr>
-    {{ msg|safe }}
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>ADD</th>
-        </tr>
-
-        {% for item in data %}
-            <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.add }}</td>
-                <td><a href="{% url 'Soen:Vedit' item.id %}">詳細編集</a></td>
-                <td><a href="{% url 'Soen:Vdelete' item.id %}">削除</a></td>
-            </tr>
-        {% endfor %}
-    </table>
-    <a class="text-bottom" href="{% url 'Soen:Vnewcreate' %}">NewCreate</a><br>
-    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">ここmain</a><br>
+    <div class="row mt-100px">
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"
+                 alt="201909写真">
+            <div class="card-body">
+                <h5 class="card-title">装苑</h5>
+                <p class="card-text">
+                <ul>施工体制台帳 作成</ul>
+                <ul>見積作成･実行予算作成</ul>
+                <ul>現場材料手配</ul>
+                <ul>DB他</ul>
+                <br><br><br>
+                <ul><a class="text-bottom" href="{% url 'Soen:VlogSmemList' %}">Soen/member</a><br></ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-100px">
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"
+                 alt="201909写真">
+            <div class="card-body">
+                <h5 class="card-title">装苑</h5>
+                <p class="card-text">
+                <ul>施工体制台帳 作成</ul>
+                <ul>見積作成･実行予算作成</ul>
+                <ul>現場材料手配</ul>
+                <ul>DB他</ul>
+                <br><br><br>
+                <ul><a class="text-bottom" href="{% url 'Show:VsekoList' %}">sekotai/List</a><br></ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-100px">
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"
+                 alt="201909写真">
+            <div class="card-body">
+                <h5 class="card-title">装苑</h5>
+                <p class="card-text">
+                <ul>施工体制台帳 作成</ul>
+                <ul>見積作成･実行予算作成</ul>
+                <ul>現場材料手配</ul>
+                <ul>DB他</ul>
+                <br><br><br>
+                <ul><a class="text-bottom" href="{% url 'm3ch:index' %}">m3ch/index</a><br></ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
-{% block sideB %}
-    <a class="text-bottom" href="{% url 'm3ch:top' %}">m3ch</a><br>
+{% block footer %}
+    <footer>
+        <div class="row fixed-bottom" style="background-color:#d5eaf8;">
+            <div class="col-sm-4 text-head">株式会社　装苑</div>
+            <div class="col-sm-4 text-end">2021-M3CH</div>
+        </div>
+    </footer>
 {% endblock %}

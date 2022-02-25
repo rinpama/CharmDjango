@@ -12,3 +12,6 @@ class AsSoenF(forms.ModelForm):
     class Meta:
         model = AsSoenM
         fields=['AsSManager','AsSManager','AsSMember','ConstractionDetails','ContractDate','StartDate','EndDate']
+
+class AsSearchF(forms.Form):  # index
+    name = forms.CharField(label='現場名', max_length=50)

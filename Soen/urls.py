@@ -10,6 +10,8 @@ urlpatterns = [
     path('delete/<int:number>', views.Vdelete, name='Vdelete'),
     # path('detail/<int:pk>', views.IdModelDetail.as_view(), name='detail'),
     path('detail/<int:pk>', views.VIddetail, name='Vdetail'),
+    path('logSmemList/', views.VlogSmemList, name='VlogSmemList'),
     path('main/', views.Vmain, name='Vmain'),
     path('sub/', views.Vsub, name='Vsub'),
 ]
+

@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+    {{ msg|safe }}<br>
+    <table>
+        現場名：　{{ data.AsName }}<br>
+        ｾﾞﾈｺﾝ名：　{{ data.AsCompany }}<br>
+        現場住所：　{{ data.AsAddress }}<br>
+        工事内容(装苑)：　{{ data2.ConstractionDetails }}<br>
+        契約日(装苑)：　{{ data2.ContractDate }}<br>
+        担当：　{{ data2.AsManager }}<br>
+        開始工期：　{{ data2.StartDate }}<br>
+    </table>
+
+
+    <br> <a class="text-bottom" href="{% url 'Soen:Vindex' %}">index</a><br>
+{% endblock %}

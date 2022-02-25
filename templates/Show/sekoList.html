@@ -3,15 +3,29 @@
 
 {#{% block header %}#}
 {#{% endblock %}#}
-{##}
-{#{% block loginout %}#}
-{#{% endblock %}#}
-{##}
+{% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>
+    </div>
+{% endblock %}
 {#{% block nav %}#}
 {#{% endblock %}#}
 
 {% block main %}
     {{ msg }}
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+        <form action="{% url 'Show:VsekoListSearch' %}" method="post">
+            {% csrf_token %}
+            {{ form3.as_table }}
+            <td></td>
+            <td><input type="submit" value='Search'></td>
+        </form>
+    </table>
+    <br>
+    <br>
 
     <table class="table">
         <tr>
@@ -19,18 +33,26 @@
             <th>ｾﾞﾈｺﾝ名</th>
             <th>所長名</th>
         </tr>
+{#        {% if finded %}#}
+            {% for fin in finded %}
+                <tr>
+                    <td>{{ fin.AsName }}</td>
+                    <td>{{ fin.AsCompany }}</td>
+                    <td>{{ fin.AsManager }}</td>
+                    <td><a href="{% url 'Show:Vsekodetail' pk=fin.id %}">詳細</a></td>
+                </tr>
+            {% endfor %}
+
         {% for da in data %}
             <tr>
                 <td>{{ da.AsName }}</td>
                 <td>{{ da.AsCompany }}</td>
                 <td>{{ da.AsManager }}</td>
                 <td></td>
-                <td></td>
-                <td><a href="{% url 'Show:Vsekoedit' da.id %}">詳細編集</a></td>
-                <td><a href="{% url 'Show:Vsekodelete' da.id %}">削除</a></td>
             </tr>
         {% endfor %}
     </table>
+    <a class="text-bottom" href="{% url 'Show:VsekoList' %}">ここListPage</a>
     <br>
     <hr>
     <br>
@@ -43,6 +65,9 @@
         {{ form2.as_p }}
         <input type="submit" value="簡易登録">
     </form>
+    <br>
+    <br>
+
 {% endblock %}
 
 {#{% block sideB %}#}
