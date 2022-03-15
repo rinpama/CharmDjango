@@ -3,7 +3,7 @@
 
 {% block main %}
     <tale>
-        <form action="{% url 'Soen:Vnewcreate' %}" method="POST">
+        <form action="{% url 'Soen:Vlogsmemcreatemore' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             {{ form2.as_p }}
@@ -13,8 +13,8 @@
             </tr>
         </form>
     </tale>
-    <a class="text-bottom" href="{% url 'Soen:VlogSmemList' %}">member-Top</a><br>
-    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">inHOME</a>
+    <a class="text-bottom" href="{% url 'Soen:Vlogsmemlist' %}">member-Top</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">inHOME</a>
     <br>
     <br>
 {% endblock %}

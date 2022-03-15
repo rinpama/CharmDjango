@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{#{% block header %}#}
+{#{% endblock %}#}
+{% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'Soen:Vindex' %}" role="button">ログアウト</a>
+    </div>
+{% endblock %}
+{#{% block nav %}#}
+{#{% endblock %}#}
+
+{% block main %}
+    {{ msg }}
+
+    {% for da in data %}
+        <tr>
+            <h3>{{ da.actualspot }}<br></h3>
+<ul>
+            {% for ma in da.AsSManager.all %}
+                <li>現場管理担当name:{{ ma.name }}<br></li>
+                <li>現場管理担当add: {{ ma.add }}<br></li>
+                <li>現場管理担当tel: {{ ma.tel }}</li><br>
+            {% endfor %}
+
+            {% for ma in da.AsSMember.all %}
+                <li>作業員name:{{ ma.name }}<br></li>
+                <li>作業員add:{{ ma.add }}<br></li>
+                <li>作業員tel:{{ ma.tel }}</li><br>
+            {% endfor %}
+</ul>
+            工事内容:{{ da.ConstractionDetails }}<br>
+            契約日:{{ da.ContractDate }}<br>
+            工期開始:{{ da.StartDate }}<br>
+            工期終了:{{ da.EndDate }}<br>
+
+            <a class="text-bottom" href="{% url 'Show:Vlogsekosmemedit' da.id %}">SMEMBER編集</a>
+            <a href="{% url 'Show:Vlogsekosmemdelete' da.id %}">削除</a><br>
+
+        </tr>
+    {% endfor %}
+    </table>
+    <br><br><br>
+    <hr>
+    <a class="text-bottom" href="{% url 'Show:VlogsekoList' %}">ここList-TopPage</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">inHOME</a><br>
+    <br>
+    <hr>
+    <a class="text-bottom" href="{% url 'Show:Vlogsekocreate' %}">現場作成</a><br>
+    <a class="text-bottom" href="{% url 'Show:Vlogsekosmemcreate' %}">現場ー装苑MEMBER作成</a>
+    <br><br><br>
+{% endblock %}
+
+{#{% block sideB %}#}
+{#{% endblock %}#}
+{##}
+{#{% block footer %}#}
+{#{% endblock %}#}

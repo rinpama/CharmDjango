@@ -13,13 +13,15 @@
     <table>
         現場名：　{{ data.AsName }}<br>
         ｾﾞﾈｺﾝ名：　{{ data.AsCompany }}<br>
+        現場住所：　{{ data.AsManager }}<br>
+        郵便番号：　{{ data.AsPostcode }}<br>
         現場住所：　{{ data.AsAddress }}<br>
-        工事内容(装苑)：　{{ data2.ConstractionDetails }}<br>
-        契約日(装苑)：　{{ data2.ContractDate }}<br>
-        担当：　{{ data2.AsManager }}<br>
-        開始工期：　{{ data2.StartDate }}<br>
+        電話番号：　{{ data.Astel }}<br>
+        工事内容：　{{ data2.ConstractionDetails }}<br>
+        工事契約日：　{{ data2.ContractDate  }}<br>
+        工期開始：　{{ data2.StartDate }}<br>
+        工期終了：　{{ data2.EndDate }}<br>　
     </table>
-
-
-    <br> <a class="text-bottom" href="{% url 'Soen:Vindex' %}">index</a><br>
+    <br> <a class="text-bottom" href="{% url 'Show:VsekoList' %}">現場List</a><br>
+    <br> <a class="text-bottom" href="{% url 'Soen:Vindex' %}">Top</a><br>
 {% endblock %}

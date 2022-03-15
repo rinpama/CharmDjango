@@ -10,7 +10,7 @@
 {% block nav %}
     <h2>株式会社 装苑</h2>
     <h4>装苑</h4>
-        <li>SoenMember</li>
+    <li>SoenMember</li>
     <h5>･工事現場書類</h5>
     <a href="{% url 'Show:VsekoList' %}">
         <li>施工体制台帳</li>
@@ -77,13 +77,13 @@
                     <td>{{ fin.name }}</td>
                     <td>{{ fin.add }}</td>
                     <td>{{ fin.moredetais.age }}</td>
-
-                    <td><a href="{% url 'Soen:Vdetail' pk=fin.id %}">詳細</a></td>
+                    <td><a href="{% url 'Soen:Vdetail' number=fin.id %}">詳細</a></td>
                 </tr>
             {% endfor %}
         {% else %}
             {% for item in data %}
                 <tr>
+                    <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.add }}</td>
                 </tr>

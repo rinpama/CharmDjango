@@ -7,7 +7,7 @@
     {{ record.add }}<br>
     <hr>
     <table>
-        <form aciton="{% url 'Soen:Vedit' id %}" method="POST">
+        <form aciton="{% url 'Soen:Vlogsmemedit' number=id %}" method="POST">
             {% csrf_token %}
             {{ form.as_table }}<br>
             {{ form2.as_table }}<br>
@@ -18,7 +18,8 @@
             </tr>
         </form>
     </table>
-    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">Main</a>
+    <a class="text-bottom" href="{% url 'Soen:Vlogsmemlist' %}">member-Top</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">inHome</a>
     <br>
     <br>
     <br>

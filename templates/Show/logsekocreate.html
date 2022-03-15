@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block main %}
+    <h3>
+        <簡易>現場の作成
+    </h3>
+    <tale>
+        <form action="{% url 'Show:Vlogsekocreate' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form2.as_p }}
+            <tr>
+                <td><input type="submit" value="簡易登録"></td>
+            </tr>
+        </form>
+    </tale>
+    <a class="text-bottom" href="{% url 'Show:VlogsekoList' %}">Top</a><br>
+{% endblock %}
+

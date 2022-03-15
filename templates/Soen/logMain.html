@@ -5,10 +5,13 @@
     <header>
         <div class="row " style="background-color:#059b08; height:50px;">
             <div class="col text-primary">
-                <a class="text-decoration-none" href="{% url 'Soen:Vmain' %} "><h1>Soen</h1></a>
+                <a class="text-decoration-none" href="{% url 'Soen:Vlogmain' %} "><h1>Soen</h1></a>
             </div>
-{#            {% block loginout %}#}
-{#            {% endblock %}#}
+            {% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'Soen:Vindex' %}" role="button">ログアウト</a>
+    </div>
+{% endblock %}
             <div class="col col-lg-2">
                 <h5 class="text-end">twelve
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -22,7 +25,7 @@
 {% endblock %}
 
 {% block nav %}
-    <a href="{% url 'Soen:Vsub' %}" class="btn btn-primary">Go Sub頁</a>
+    <a href="{% url 'Soen:Vlogmainsub' %}" class="btn btn-primary">Go Sub頁</a>
 {% endblock %}
 
 
@@ -39,7 +42,7 @@
                 <ul>現場材料手配</ul>
                 <ul>DB他</ul>
                 <br><br><br>
-                <ul><a class="text-bottom" href="{% url 'Soen:VlogSmemList' %}">Soen/member</a><br></ul>
+                <ul><a class="text-bottom" href="{% url 'Soen:Vlogsmemlist' %}">Soen/member</a><br></ul>
             </div>
         </div>
     </div>
@@ -55,7 +58,7 @@
                 <ul>現場材料手配</ul>
                 <ul>DB他</ul>
                 <br><br><br>
-                <ul><a class="text-bottom" href="{% url 'Show:VsekoList' %}">sekotai/List</a><br></ul>
+                <ul><a class="text-bottom" href="{% url 'Show:VlogsekoList' %}">logsekoList</a><br></ul>
             </div>
         </div>
     </div>
@@ -71,7 +74,7 @@
                 <ul>現場材料手配</ul>
                 <ul>DB他</ul>
                 <br><br><br>
-                <ul><a class="text-bottom" href="{% url 'm3ch:index' %}">m3ch/index</a><br></ul>
+                <ul><a class="text-bottom" href="{% url 'm3ch:top' %}">m3ch/Top</a><br></ul>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
         {{ obj.id }}<br>
         {{ obj.name }}<br>
         {{ obj.add }}<br>
-        <form aciton="{% url 'Soen:Vdelete' id %}" method="POST">
+        <form aciton="{% url 'Soen:Vlogsmemdelete' id %}" method="POST">
             {% csrf_token %}
             {{ form.as_table }}
             <tr>
@@ -19,6 +19,6 @@
     {{ msg }}
     <hr>
     <p>やっぱり削除しない！　</p>
-    <a class="text-bottom" href="{% url 'Soen:VlogSmemList' %}">member-Top</a><br>
-    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">inHOME</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vlogsmemlist' %}">member-Top</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">inHOME</a><br>
 {% endblock %}

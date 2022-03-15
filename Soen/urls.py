@@ -3,15 +3,16 @@ from . import views
 
 app_name = 'Soen'
 urlpatterns = [
-    path('', views.Vindex, name='Vindex'),
+    path('', views.Vindex, name='Vindex'),#SoenMemberList(簡易)
+    path('detail/<int:number>/', views.Vdetail, name='Vdetail'),
     path('create/', views.Vcreate, name='Vcreate'),
-    path('newcreate/', views.Vnewcreate, name='Vnewcreate'),
-    path('edit/<int:number>', views.Vedit, name='Vedit'),
-    path('delete/<int:number>', views.Vdelete, name='Vdelete'),
-    # path('detail/<int:pk>', views.IdModelDetail.as_view(), name='detail'),
-    path('detail/<int:pk>', views.VIddetail, name='Vdetail'),
-    path('logSmemList/', views.VlogSmemList, name='VlogSmemList'),
-    path('main/', views.Vmain, name='Vmain'),
-    path('sub/', views.Vsub, name='Vsub'),
-]
 
+    path('logmain/', views.Vlogmain, name='Vlogmain'),
+    path('logmainsub/', views.Vlogmainsub, name='Vlogmainsub'),
+    path('logsmemlist/', views.Vlogsmemlist, name='Vlogsmemlist'),
+    path('logsmemdetail/<int:number>/', views.Vlogsmemdetail, name='Vlogsmemdetail'),
+    path('logsmemcreatemore/', views.Vlogsmemcreatemore, name='Vlogsmemcreatemore'),
+    path('logsmemedit/<int:number>/', views.Vlogsmemedit, name='Vlogsmemedit'),
+    path('logsmemdelete/<int:number>/', views.Vlogsmemdelete, name='Vlogsmemdelete'),
+
+]

@@ -19,14 +19,13 @@
         </tr>
         <form action="{% url 'Show:VsekoListSearch' %}" method="post">
             {% csrf_token %}
-            {{ form3.as_table }}
+            {{ form4.as_table }}
             <td></td>
             <td><input type="submit" value='Search'></td>
         </form>
     </table>
     <br>
     <br>
-
     <table class="table">
         <tr>
             <th>現場名</th>
@@ -39,7 +38,8 @@
                     <td>{{ fin.AsName }}</td>
                     <td>{{ fin.AsCompany }}</td>
                     <td>{{ fin.AsManager }}</td>
-                    <td><a href="{% url 'Show:Vsekodetail' pk=fin.id %}">詳細</a></td>
+                    <td>{{ fin.actualspot }}</td>
+                    <td><a href="{% url 'Show:Vsekodetail' fin.id %}">詳細</a></td>
                 </tr>
             {% endfor %}
 
@@ -48,23 +48,13 @@
                 <td>{{ da.AsName }}</td>
                 <td>{{ da.AsCompany }}</td>
                 <td>{{ da.AsManager }}</td>
+                <td><a class="text-bottom" href="{% url 'Show:Vsekodetail' da.id %}">詳細</a></td>
                 <td></td>
             </tr>
         {% endfor %}
     </table>
-    <a class="text-bottom" href="{% url 'Show:VsekoList' %}">ここListPage</a>
-    <br>
-    <hr>
-    <br>
-    <h3>
-        <簡易>現場の作成
-    </h3>
-    <form action="{% url 'Show:VsekoList' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ form2.as_p }}
-        <input type="submit" value="簡易登録">
-    </form>
+    <a class="text-bottom" href="{% url 'Show:VsekoList' %}">ここListPage</a><br>
+    <a class="text-bottom" href="{% url 'Show:Vsekocreate' %}">簡易作成</a>
     <br>
     <br>
 

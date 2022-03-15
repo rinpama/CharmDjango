@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block loginout %}
+    <div class="col-md-auto" style="height:50px;">
+        <a class="btn btn-info" href="{% url 'Soen:Vindex' %}" role="button">ログアウト</a>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+    {{ msg|safe }}<br>
+
+    <hr>
+    <table>
+        <form aciton="{% url 'Show:Vlogsekosmemedit' number=id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}<br>
+            {{ form2.as_table }}<br>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="編集登録"></td>
+            </tr>
+        </form>
+    </table>
+    <br> <a class="text-bottom" href="{% url 'Show:VlogsekoList' %}">seko-Top</a><br>
+{% endblock %}

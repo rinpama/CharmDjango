@@ -7,18 +7,18 @@
 {% endblock %}
 
 {% block nav %}
-    <a href="{% url 'Soen:Vmain' %}" class="btn btn-primary">Go main頁</a>
+    <a href="{% url 'Soen:Vlogmain' %}" class="btn btn-primary">Go main頁</a>
 {% endblock %}
 
 
 {% block main %}
         <h2>株式会社 装苑</h2>
     <h4>装苑</h4>
-    <a href="{% url 'Soen:Vsub' %}">
+    <a href="{% url 'Soen:Vlogsmemlist' %}">
         <li>SoenMember</li>
     </a>
     <h5>･工事現場書類</h5>
-    <a href="">
+    <a href="{% url 'Show:VlogsekoList' %}">
         <li>施工体制台帳</li>
     </a>
     <a href="">
@@ -92,5 +92,5 @@
 
 {% block sideB %}
     <h1>sideB</h1>
-    <a class="text-bottom" href="{% url 'Soen:Vmain' %}">main</a><br>
+    <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">main</a><br>
 {% endblock %}
