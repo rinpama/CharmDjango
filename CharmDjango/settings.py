@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     'm3ch',
     'Soen',
-'Show',
+    'Show',
 
 ]
 
@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/logmain'
-LOGOUT_REDIRECT_URL = '/accounts/login' #''
+LOGOUT_REDIRECT_URL = '/accounts/login'  # ''
 
 # https://python-markdown.github.io/extensions/
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
