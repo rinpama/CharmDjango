@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
 import os
 
@@ -23,16 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from .local_settings import SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG=False
 
 try:
     from CharmDjango.local_settings import *
 except ImportError:
     pass
-# if not DEBUG:
-#     import django-heroku
-#     django_heroku.settings(locals())
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -85,7 +86,12 @@ WSGI_APPLICATION = 'CharmDjango.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-from .local_settings import DATABASES
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -118,12 +124,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
 STATIC_URL = '/static/'
 # 開発時
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/')]
-# 本番環境
-# STATIC_ROOT='/var/www/static' # 例
+# 本番環境 # STATIC_ROOT='/var/www/static' # 例
+STATIC_ROOT='staticfiles'
 
 
 MEDIA_URL = '/media/'
@@ -155,3 +162,8 @@ MARKDOWNX_IMAGE_MAX_SIZE = {
 
 SUMMERNOTE_THEME = 'bs4'
 X_FRAME_OPTOPNS = 'SAMEORIGIN'
+
+
+
+
+django_heroku.settings(locals())
