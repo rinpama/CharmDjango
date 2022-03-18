@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # from .local_settings import SECRET_KEY######
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=False
+DEBUG = False
 
 try:
     from CharmDjango.local_settings import *
@@ -31,6 +31,7 @@ except ImportError:
     pass
 if not DEBUG:
     import django_heroku
+
     django_heroku.settings(locals())
 
 ALLOWED_HOSTS = ['*']
@@ -55,7 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,6 +90,7 @@ WSGI_APPLICATION = 'CharmDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 import dj_database_url
+
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
@@ -132,8 +134,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/')]
 # 本番環境 # STATIC_ROOT='/var/www/static' # 例
-STATIC_ROOT='staticfiles'
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 if DEBUG:
@@ -165,7 +167,6 @@ MARKDOWNX_IMAGE_MAX_SIZE = {
 SUMMERNOTE_THEME = 'bs4'
 X_FRAME_OPTOPNS = 'SAMEORIGIN'
 
-
-
 import django_heroku
+
 django_heroku.settings(locals())
