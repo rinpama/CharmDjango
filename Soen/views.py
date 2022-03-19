@@ -4,7 +4,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Q
 from django.views.generic import DetailView
 
-from .models import MemberM, MemberDetailM, BlogM
+from .models import MemberMo, MemberDetailMo, BlogMo
 from .forms import IdSearch, FindForm, MemberF, MemberDetailF, BlogF  # NewMemberF,
 
 
@@ -19,17 +19,17 @@ def Vindex(request):
         'data': [], }
     if request.method == 'POST':
         nametxt = request.POST['name']
-        item = MemberM.objects.filter(Q(name__icontains=nametxt))
+        item = MemberMo.objects.filter(Q(name__icontains=nametxt))
         params['title'] = 'お探しのName一致してますか？'
         params['msg'] = "<h2>your request is ...</h2>"
         params['finded'] = item
         params['form'] = IdSearch(request.POST)
     else:
-        params['data'] = MemberM.objects.all()
+        params['data'] = MemberMo.objects.all()
     return render(request, 'Soen/index.html', params)
 #***************************************************************************************
 def Vdetail(request, number):
-    record = MemberM.objects.get(id=number)
+    record = MemberMo.objects.get(id=number)
     form=MemberF(instance=record)
     params = {
         'title': '詳細頁',
@@ -47,9 +47,9 @@ def Vcreate(request):
         'form': MemberF(),
     }
     if request.method == 'POST':
-        obj = MemberM()
-        obj2 = MemberDetailM(memberm=obj)
-        obj3 = BlogM(memberm=obj)
+        obj = MemberMo()
+        obj2 = MemberDetailMo(memberm=obj)
+        obj3 = BlogMo(memberm=obj)
         record = MemberF(request.POST, instance=obj)
         record2 = MemberDetailF(request.POST, instance=obj2)  # *******************
         record3 = BlogF(request.POST, instance=obj3)
@@ -68,12 +68,12 @@ def Vlogsmemlist(request):
         form = FindForm()
         str1 = str(request.POST['findname'])
         str2 = str(request.POST['findadd'])
-        finded = MemberM.objects.filter(Q(name__icontains=str1) | Q(add__icontains=str2))
+        finded = MemberMo.objects.filter(Q(name__icontains=str1) | Q(add__icontains=str2))
         data = []
     else:
         msg = '<h3>SoenMember</h3>'
         form = FindForm()
-        data = MemberM.objects.all()
+        data = MemberMo.objects.all()
         finded = []
     params = {
         'title': 'ここは、検索頁',
@@ -95,9 +95,9 @@ def Vlogsmemcreatemore(request):
         'form3': BlogF(),
     }
     if request.method == 'POST':
-        obj = MemberM()
-        obj2 = MemberDetailM(memberm=obj)
-        obj3 = BlogM(memberm=obj)
+        obj = MemberMo()
+        obj2 = MemberDetailMo(memberm=obj)
+        obj3 = BlogMo(memberm=obj)
         record = MemberF(request.POST, instance=obj)
         record2 = MemberDetailF(request.POST, instance=obj2)
         record3 = BlogF(request.POST, instance=obj3)
@@ -111,9 +111,9 @@ def Vlogsmemcreatemore(request):
 #***************************************************************************************
 @login_required
 def Vlogsmemedit(request, number):
-    obj = MemberM.objects.get(id=number)
-    obj2 = MemberDetailM.objects.get(memberm=obj)
-    obj3 = BlogM.objects.get(memberm=obj)
+    obj = MemberMo.objects.get(id=number)
+    obj2 = MemberDetailMo.objects.get(memberm=obj)
+    obj3 = BlogMo.objects.get(memberm=obj)
     params = {
         'title': '編集頁っす',
         'msg': '編集中ね',
@@ -139,7 +139,7 @@ def Vlogsmemedit(request, number):
 #***************************************************************************************
 @login_required
 def Vlogsmemdelete(request, number):
-    record = MemberM.objects.get(id=number)
+    record = MemberMo.objects.get(id=number)
     if request.method == 'POST':
         record.delete()
         return redirect(to='Soen:Vlogsmemlist')
@@ -174,11 +174,11 @@ def Vlogsmemdetail(request):
         form = FindForm()
         str1 = str(request.POST['findname'])
         str2 = str(request.POST['findadd'])
-        data = MemberM.objects.filter(Q(name__icontains=str1) | Q(add__icontains=str2))
+        data = MemberMo.objects.filter(Q(name__icontains=str1) | Q(add__icontains=str2))
     else:
         msg = '<h3>SoenMember</h3>'
         form = FindForm()
-        data = MemberM.objects.all()
+        data = MemberMo.objects.all()
     params = {
         'title': 'ここは、検索頁',
         'msg': msg,

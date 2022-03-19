@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import ActualSpotM, AsSoenM
-from Soen.models import MemberM
+from .models import ActualSpotMo, AsSoenMo
+from Soen.models import MemberMo
 from .forms import ActualSpotF, AsSoenF, AsSearchF
 from Soen.forms import MemberF
 
@@ -10,14 +10,14 @@ from Soen.forms import MemberF
 # Create your views here.
 # *******************************************************************************************
 def VsekoList(request):
-    data = ActualSpotM.objects.all()
+    data = ActualSpotMo.objects.all()
     form = ActualSpotF()
-    data2=AsSoenM.objects.all()
+    data2=AsSoenMo.objects.all()
     form2=AsSoenF()
     if request.method == 'POST':  # 簡易create
-        rec = ActualSpotM()
+        rec = ActualSpotMo()
         obj = ActualSpotF(request.POST, instance=rec)
-        rec2 = AsSoenM(actualspot=rec)
+        rec2 = AsSoenMo(actualspot=rec)
         obj2 = AsSoenF(request.POST, instance=rec2)
         if obj.is_valid():
             obj.save()
@@ -43,21 +43,21 @@ def VsekoListSearch(request):
     }
     if request.method == 'POST':
         nametxt = request.POST['name']
-        item = ActualSpotM.objects.filter(Q(AsName__icontains=nametxt))
+        item = ActualSpotMo.objects.filter(Q(AsName__icontains=nametxt))
         params['finded'] = item
         params['form'] = ActualSpotF()
         params['form4'] = AsSearchF(request.POST)
     else:
-        params['data'] = ActualSpotM.objects.all()
+        params['data'] = ActualSpotMo.objects.all()
         params['form4'] = AsSearchF()
     return render(request, 'Show/sekoList.html', params)
 
 
 # *******************************************************************************************
 def Vsekodetail(request, number):
-    record = ActualSpotM.objects.get(pk=number)
+    record = ActualSpotMo.objects.get(pk=number)
     form = ActualSpotF(instance=record)
-    rec = AsSoenM(actualspot=record)
+    rec = AsSoenMo(actualspot=record)
     obj = AsSoenF(request.POST, instance=rec)
     params = {
         'title': '詳細頁',
@@ -74,7 +74,7 @@ def Vsekocreate(request):
         'form': ActualSpotF(),
     }
     if request.method == 'POST':
-        obj = ActualSpotM()
+        obj = ActualSpotMo()
         record = ActualSpotF(request.POST, instance=obj)
         if record.is_valid():
             record.save()
@@ -85,7 +85,7 @@ def Vsekocreate(request):
 # *******************************************************************************************
 @login_required
 def VlogsekoList(request):
-    data = ActualSpotM.objects.all()
+    data = ActualSpotMo.objects.all()
     params = {
         'data': data
     }
@@ -99,7 +99,7 @@ def Vlogsekocreate(request):
         'form': ActualSpotF(),
     }
     if request.method == 'POST':
-        obj = ActualSpotM()
+        obj = ActualSpotMo()
         record = ActualSpotF(request.POST, instance=obj)
         if record.is_valid():
             record.save()
@@ -115,7 +115,7 @@ def Vlogsekosmemcreate(request):
         'form2': AsSoenF(),
     }
     if request.method == 'POST':
-        obj = AsSoenM()
+        obj = AsSoenMo()
         record = AsSoenF(request.POST, instance=obj)
         if record.is_valid():
             record.save()
@@ -125,7 +125,7 @@ def Vlogsekosmemcreate(request):
     # *******************************************************************************************
 @login_required
 def Vlogsekosmemlist(request):
-    data = AsSoenM.objects.all()
+    data = AsSoenMo.objects.all()
     params = {
         'data': data
     }
@@ -134,12 +134,12 @@ def Vlogsekosmemlist(request):
     # *******************************************************************************************
 @login_required
 def Vlogsekoedit(request, number):
-    obj = ActualSpotM.objects.get(id=number)
-    # if AsSoenM.objects.get(actualspot=obj):
-    #     obj2 = AsSoenM.objects.get(actualspot=obj)
+    obj = ActualSpotMo.objects.get(id=number)
+    # if AsSoenMo.objects.get(actualspot=obj):
+    #     obj2 = AsSoenMo.objects.get(actualspot=obj)
     # else:
-    #     obj2=AsSoenM()
-    obj2=AsSoenM()
+    #     obj2=AsSoenMo()
+    obj2=AsSoenMo()
     if request.method == 'POST':
         record = ActualSpotF(request.POST, instance=obj)
         record2 = AsSoenF(request.POST, instance=obj2)
@@ -163,7 +163,7 @@ def Vlogsekoedit(request, number):
 # *******************************************************************************************
 @login_required
 def Vlogsekodelete(request, number):
-    record = ActualSpotM.objects.get(pk=number)
+    record = ActualSpotMo.objects.get(pk=number)
     if request.method == 'POST':
         record.delete()
         return redirect(to='Show:VlogsekoList')
@@ -177,9 +177,9 @@ def Vlogsekodelete(request, number):
     # *******************************************************************************************
 @login_required
 def Vlogsekosmemedit(request, number):
-    obj2 = AsSoenM.objects.get(id=number)
-    obj = ActualSpotM.objects.get(actualspot=obj2)
-    # obj2 = AsSoenM.objects.get(actualspot=obj)
+    obj2 = AsSoenMo.objects.get(id=number)
+    obj = ActualSpotMo.objects.get(actualspot=obj2)
+    # obj2 = AsSoenMo.objects.get(actualspot=obj)
     if request.method == 'POST':
         record = ActualSpotF(request.POST, instance=obj)
         record2 = AsSoenF(request.POST, instance=obj2)
@@ -202,7 +202,7 @@ def Vlogsekosmemedit(request, number):
 # *******************************************************************************************
 @login_required
 def Vlogsekosmemdelete(request, number):
-    record = AsSoenM.objects.get(pk=number)
+    record = AsSoenMo.objects.get(pk=number)
     if request.method == 'POST':
         record.delete()
         return redirect(to='Show:VlogsekoList')

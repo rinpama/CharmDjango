@@ -1,17 +1,17 @@
 from django import forms
-from Soen.models import MemberM
-from .models import ActualSpotM,AsSoenM
+from Soen.models import MemberMo
+from .models import ActualSpotMo,AsSoenMo
 
 class ActualSpotF(forms.ModelForm):
     class Meta:
-        model = ActualSpotM
+        model = ActualSpotMo
         # fields=['AsName','AsCompany','AsManager','AsPostcode','AsAddress','Astel']#'date'
         fields='__all__'
 
 class AsSoenF(forms.ModelForm):
-    AsSMember=forms.ModelMultipleChoiceField(queryset=MemberM.objects,widget=forms.CheckboxSelectMultiple)
+    AsSMember=forms.ModelMultipleChoiceField(queryset=MemberMo.objects,widget=forms.CheckboxSelectMultiple)
     class Meta:
-        model = AsSoenM
+        model = AsSoenMo
         # fields=['AsSManager','AsSMember','ConstractionDetails','ContractDate','StartDate','EndDate']#'actualspot',
         fields = '__all__'
 
