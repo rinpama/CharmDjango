@@ -49,7 +49,7 @@ def Vcreate(request):
     if request.method == 'POST':
         obj = MemberMo()
         obj2 = MemberDetailMo(memberm=obj)
-        obj3 = BlogMo(memberm=obj)
+        obj3 = BlogMo(memberm2=obj)
         record = MemberF(request.POST, instance=obj)
         record2 = MemberDetailF(request.POST, instance=obj2)  # *******************
         record3 = BlogF(request.POST, instance=obj3)
@@ -97,7 +97,7 @@ def Vlogsmemcreatemore(request):
     if request.method == 'POST':
         obj = MemberMo()
         obj2 = MemberDetailMo(memberm=obj)
-        obj3 = BlogMo(memberm=obj)
+        obj3 = BlogMo(memberm2=obj)
         record = MemberF(request.POST, instance=obj)
         record2 = MemberDetailF(request.POST, instance=obj2)
         record3 = BlogF(request.POST, instance=obj3)
@@ -113,7 +113,7 @@ def Vlogsmemcreatemore(request):
 def Vlogsmemedit(request, number):
     obj = MemberMo.objects.get(id=number)
     obj2 = MemberDetailMo.objects.get(memberm=obj)
-    obj3 = BlogMo.objects.get(memberm=obj)
+    obj3 = BlogMo.objects.get(memberm2=obj)
     params = {
         'title': '編集頁っす',
         'msg': '編集中ね',
