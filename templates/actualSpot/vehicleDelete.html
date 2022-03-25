@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>Delete</title>
+</head>
+ 
+<body>
+    <h1>DeleteView削除確認画面</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ vehicle_delete.vehicleNumber }}/{{ vehicle_delete.vehicleNumber }}を削除しますか？</p>
+        <input type="submit" value="削除する">
+    </form>
+    {% block side_b %}
+        <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+        <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+        <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+        <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+        <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+    {% endblock %}
+</body>
+ 
+</html>

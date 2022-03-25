@@ -1,0 +1,43 @@
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}{% endblock %}
+
+{% block side_a %}
+    <P><h3><a href="{% url 'actualSpot:spotcreate' %}">現場の新規作成</a></h3></P>
+    <P><a href="{% url 'reimex:screate' %}">装苑メンバーの新規作成</a></P>
+    <P><a href="{% url 'actualSpot:mostRecentcreate' %}">協力会社の新規作成</a></P>
+    <P><a href="{% url 'actualSpot:gconcreate' %}">zeneの新規作成</a></P>
+{% endblock %}
+
+{% block main_content %}
+    <h2>●現場一覧</h2>
+
+    <table border="1">
+        <tr>
+            <th>現場名</th>
+            <th>メンバー</th>
+        </tr>
+        {% for aspot in object_list %}
+        <tr>
+            <td>{{ aspot.checking }}</td>
+            <td>{{ aspot.spotName }}</td>
+             
+            <td><a href="{% url 'actualSpot:spotdetail' aspot.pk %}">詳細</a></td>
+            <br>
+            <td><a href="{% url 'actualSpot:spotupdate' aspot.pk %}">編集</a></td>
+            <br>
+            <td><a href="{% url 'actualSpot:spotdelete' aspot.pk %}">削除</a></td>          
+        <tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block side_b %}
+    <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+{% endblock %}
+
+{% block footer %}{% endblock %} 

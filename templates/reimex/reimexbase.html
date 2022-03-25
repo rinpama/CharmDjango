@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    {% block title %}{% endblock %}
+  </head>
+  <body>
+  <div class="container">
+{#    <div class="row">#}
+{#        <div class="col">#}
+{#            <p>#}
+{#                {% if user.is_authenticated %}#}
+{#                <em>{{ user.username }}でログインしています。</em><br/>#}
+{#                    ログアウトするなら→<a href="{% url 'logout' %}">ログアウト！</a>#}
+{#                {% else %}#}
+{#                <em>まだログインしていません。</em><br/>#}
+{#                    ログインは<a href="{% url 'login' %}">こちら</a>#}
+{#                {% endif %}#}
+{#            </p>#}
+{#        </div>#}
+{#    </div>#}
+    <div class="row">
+        <div class="col-3">
+            <br>
+            <br>
+            <br>
+            {% block side_a %}{% endblock %}
+        </div>
+        <div class="col-7">
+            {% block main_content %}{% endblock %}
+        </div>
+        <div class="col-2">
+            <br>
+            <br>
+            {% block side_b %}{% endblock %}
+        </div>
+    </div>
+    <div class="row">
+        {% comment %} <div class="row"> {% endcomment %}
+        <br>
+        <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">main</a><br>
+        <hr>
+            {% comment %} <div class="col align-self-start">
+                <p></p>
+            </div> {% endcomment %}
+            <div class="col align-self-center">
+{#                <a href="{% url 'logedindex:logedindex'  %}">HOME画面に戻る</a>#}
+            </div>
+            <div class="col align-self-end">
+                <small>Copyright (c) M3CH.k All Rights Reserved.</small>
+            </div>
+        {% comment %} </div> {% endcomment %}
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </div>  
+  </body>
+</html>

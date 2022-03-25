@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'm3ch',
     'Soen',
     'Show',
+    'actualSpot',
+    'reimex',
 
 ]
 

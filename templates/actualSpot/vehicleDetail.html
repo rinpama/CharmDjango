@@ -1,0 +1,55 @@
+detail
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}detail{% endblock %}
+
+{% block side_a %}
+    <P><h3><a href="{% url 'actualSpot:spotcreate' %}">現場の新規作成</a></h3></P>
+    <P><a href="{% url 'reimex:screate' %}">装苑メンバーの新規作成</a></P>
+    <P><a href="{% url 'actualSpot:mostRecentcreate' %}">協力会社の新規作成</a></P>
+    <P><a href="{% url 'actualSpot:gconcreate' %}">zeneの新規作成</a></P>
+{% endblock %}
+
+{% block main_content %}   
+   <table border="1">
+    <thead>
+        <tr>
+            <th>所属</th>
+            <th>車両番号</th>
+            <th>使用開始</th>
+            <th>使用終了</th>
+            
+        </tr>
+    </thead>
+      <tbody>
+        <tr>
+           <td>{{ vehicle_detail.mostrecent }}</td>
+           <td>{{ vehicle_detail.vehicleNumber }}</td>
+           <td>{{ vehicle_detail.firstUse }}</td>
+           <td>{{ vehicle_detail.finishUse }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      {% for member in spot_detail.members.all %}
+        <tr>
+          <td>{{ member.name }}</td>
+          <td>{{ member.age }}</td>
+        </tr>
+      {% endfor %}
+    </table>  
+{% endblock %}
+
+{% block side_b %}
+    {% comment %} <a href="{% url 'reimex:choiceList' %}"> このメンバーで名簿の作成</a> {% endcomment %}
+    <a class='btn btn-primary' href="{% url 'reimex:testdo' %}"> ！！！True(編集画面で選択チェックを！)！！！このメンバーで名簿の作成</a>
+    <p>出力⇒古賀：C:\Users\PCUSER\Desktop\tesdata\output_data\{0:%Y%m%d_%H%M%S}.xlsm</p>
+    <hr>
+    <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+{% endblock %}
+
+{% block footer %}{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}create{% endblock %}
+
+{% block side_a %}
+    <P><h3><a href="{% url 'actualSpot:spotcreate' %}">現場の新規作成</a></h3></P>
+    <p><a href="{% url 'reimex:screate' %}">装苑メンバーの新規作成</a></p>
+    <p><a href="{% url 'actualSpot:mostRecentcreate' %}">協力会社の新規作成</a></p>
+    <p><a href="{% url 'actualSpot:gconcreate' %}">zeneの新規作成</a></p>
+{% endblock %}
+
+{% block main_content %}
+    <h2>New zene</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit'>save</button>
+    </form>
+{% endblock %}
+
+{% block side_b %}
+    <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+{% endblock %}
+
+{% block footer %}moji{% endblock %}

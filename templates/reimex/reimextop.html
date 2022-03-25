@@ -1,0 +1,13 @@
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}TOP{% endblock %}
+
+{% block side_a %}
+<p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <br>
+    <br><br><br><br><br><br>
+{#    <a class="text-bottom" href="{% url 'Soen:Vlogmain' %}">main</a><br>#}
+{% endblock %}

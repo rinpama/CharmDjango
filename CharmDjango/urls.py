@@ -27,6 +27,8 @@ urlpatterns = [
     path('show/',include('Show.urls')),
     path('summernote/', include('django_summernote.urls')),
     # path('markdownx/', include('markdownx.urls')),
+    path('actualSpot/',include('actualSpot.urls')),
+    path('reimex/',include('reimex.urls')),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

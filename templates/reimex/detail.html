@@ -1,0 +1,70 @@
+detail
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}detail{% endblock %}
+
+{% block side_a %}
+    <P><h3><a href="{% url 'actualSpot:spotcreate' %}">現場の新規作成</a></h3></P>
+    <p><a href="{% url 'reimex:screate' %}">装苑メンバーの新規作成</a></p>
+    <p><a href="{% url 'actualSpot:mostRecentcreate' %}">協力会社の新規作成</a></p>
+    <p><a href="{% url 'actualSpot:gconcreate' %}">zeneの新規作成</a></p>
+{% endblock %}
+
+{% block main_content %}
+       <table border="1">
+            <tr><th>選択フラグ</th><td>{{ soen.checking }}</td></tr>
+            <tr><th>検索番号</th><td>{{ object.code }}</td></tr>
+            <tr><th>姓名</th><td>{{ object.name }}</td></tr>
+            <tr><th>所属</th><td>{{ soen.djgroup }}</td></tr>
+            <tr><th>所属2</th><td>{{ soen.djgroup2 }}</td></tr>
+            <tr><th>職種</th><td>{{ soen.occupation }}</td></tr>
+            <tr><th>※1</th><td>{{ soen.refer }}</td></tr>
+            <tr><th>ﾅﾏｴ</th><td>{{ object.kanaName }}</td></tr>
+            <tr><th>生年月日</th><td>{{ object.birthday }}</td></tr>
+            <tr><th>年齢</th><td>{{ soen.age }}</td></tr>
+            <tr><th>雇用年月日</th><td>{{ object.dateofEmployment }}</td></tr>
+            <tr><th>該当職種に就労した年齢</th><td>{{ object.workingFirstDate }}</td></tr>
+            <tr><th>経験年数</th><td>{{ soen.yearsOfEmployment }}</td></tr>
+            <tr><th>郵便番号</th><td>{{ object.postalcode }}</td></tr>
+            <tr><th>現住所</th><td>{{ object.address }}</td></tr>
+            <tr><th>電話番号</th><td>{{ soen.telephoneNumber }}</td></tr>
+            <tr><th>家族連絡先</th><td>{{ object.familyAdd }}</td></tr>
+            <tr><th>電話番号(家族)</th><td>{{ object.tel }}</td></tr>
+            <tr><th>健康診断日</th><td>{{ soen.medicalCheckUp }}</td></tr>
+            <tr><th>血圧</th><td>{{ object.bloodPressure }}</td></tr>
+            <tr><th>血液型</th><td>{{ object.bloodType }}</td></tr>
+            <tr><th>特殊健康診断</th><td>{{ object.specialHealthCheck }}</td></tr>
+            <tr><th>種類</th><td>{{ object.SHCkind }}</td></tr>
+            <tr><th>健康保険</th><td>{{ object.healthInsurance }}</td></tr>
+            <tr><th>健康保険下4桁</th><td>{{ object.HIlast4digits }}</td></tr>
+            <tr><th>年金保険</th><td>{{ object.pensionInsurance }}</td></tr>
+            <tr><th>雇用保険</th><td>{{ object.employmentinsurance }}</td></tr>
+            <tr><th>雇用保険下4桁</th><td>{{ object.EIlast4digits }}</td></tr>
+            <tr><th>建退協</th><td>{{ object.retirementCooperation }}</td></tr>
+            <tr><th>雇用･職長･特別教育</th><td>{{ object.specialEducation }}</td></tr>
+            <tr><th>技能講習</th><td>{{ object.skillTraning }}</td></tr>
+            <tr><th>免許</th><td>{{ object.licence }}</td></tr>
+            <tr><th>入場年月日</th><td>{{ soen.dateOfAdmission }}</td></tr>
+            {% comment %} <tr><th>建退協手帳有無</th><td>{{ soen.pocketBook }}</td></tr> {% endcomment %}
+            <tr><th>Link1</th><td>{{ object.file1 }}</td></tr>
+            <tr><th>Link2</th><td>{{ object.file2 }}</td></tr>
+            <tr><th>Link3</th><td>{{ object.file3 }}</td></tr>
+            <tr><th>Link4</th><td>{{ object.file4 }}</td></tr>
+            <tr><th>Link5</th><td>{{ object.file5 }}</td></tr>
+            <tr><th>Link6</th><td>{{ object.file6 }}</td></tr>
+            <tr><th>Link7</th><td>{{ object.file7 }}</td></tr>
+            <tr><th>Link8</th><td>{{ object.file8 }}</td></tr>
+            <tr><th>Link9</th><td>{{ object.file9 }}</td></tr>
+            <tr><th>Link10</th><td>{{ object.file10 }}</td></tr>      
+        </table>
+    <a href="{% url 'reimex:supdate' object.pk %}">職方詳細編集</a>
+   
+{% endblock %}
+{% block side_b %}
+    <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+{% endblock %}
+{% block footer %}{% endblock %}

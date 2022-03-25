@@ -1,0 +1,52 @@
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}{% endblock %}
+
+{% block side_a %}
+    <P><h3><a href="{% url 'actualSpot:spotcreate' %}">現場の新規作成</a></h3></P>
+    <p><a href="{% url 'reimex:screate' %}">装苑メンバーの新規作成</a></p>
+    <p><a href="{% url 'actualSpot:mostRecentcreate' %}">協力会社の新規作成</a></p>
+    <p><a href="{% url 'actualSpot:gconcreate' %}">zeneの新規作成</a></p>
+{% endblock %}
+
+{% block main_content %}
+    <h2>●職方一覧</h2>
+    <form action="" method="get">
+        <input name="query" value="{{ request.GET.query }}" type="text">
+        <button type="submit">名前で検索する</button>
+    </form> 
+    <table border="1">
+        <tr>
+            <th>exNO.</th>
+            <th>名前</th>
+            <th>所属</th>
+            <th>所属2</th>
+            <th>年齢</th>
+            <th>経験年数</th>
+        </tr>
+        {% for member in object_list %}
+            <tr>
+                <td>{{ member.code}}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.djgroup}}</td>
+                <td>{{ member.djgroup2}}</td>
+                <td>{{ member.age }}</td>
+                <td>{{ member.yearsOfExperience}}</td>
+                <td><a href="{% url 'reimex:sdetail' member.pk %}">詳細</a></td>
+                <td><a href="{% url 'reimex:supdate' member.pk %}">編集</a></td>
+                <td><a href="{% url 'reimex:sdelete' member.pk %}">削除</a></td>
+                <td>{{ member.checking}}</td>   
+            <tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block side_b %}
+    <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+{% endblock %}
+
+{% block footer %}{% endblock %} 

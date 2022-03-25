@@ -1,0 +1,223 @@
+detail
+{% extends 'reimex/reimexbase.html' %}
+
+{% block title %}detail{% endblock %}
+
+{% block side_a %}
+    <P><h3><a href="{% url 'actualSpot:spotcreate' %}">現場の新規作成</a></h3></P>
+    <P><a href="{% url 'reimex:screate' %}">装苑メンバーの新規作成</a></P>
+    <P><a href="{% url 'actualSpot:mostRecentcreate' %}">協力会社の新規作成</a></P>
+    <P><a href="{% url 'actualSpot:gconcreate' %}">zeneの新規作成</a></P>
+{% endblock %}
+
+{% block main_content %}  
+    <p><h4>Checked</h4></p>
+    <p>{{spot_detail.checking}}</p>
+    <p><h4>現場名</h4></p>
+    <p>{{spot_detail.spotName}}</p>
+    <hr>
+    <p><H4>元請会社</H4>
+    <table>
+      {% for g in spot_detail.gContractor.all  %}
+        <tr><th>会社名</th><td>{{g.gName}}</td></tr>
+        <tr><th>郵便番号</th><td>{{g.postalCode}}</td></tr>
+        <tr><th>住所</th><td>{{g.address}}</td></tr>
+        <tr><th>電話番号</th><td>{{g.telephoneNumber}}</td></tr>
+        <tr><th>FAX番号</th><td>{{g.FaxNumber}}</td></tr>
+      {% endfor %}
+    </table>
+    <hr>
+    <p><H4>現場所長名</H4>
+    <p>{{spot_detail.superVisor}}</p>
+    <p><H4>現場住所</H4>
+    <p>{{spot_detail.address}}</p>
+    <p><H4>元請受注日</H4>
+    <p>{{spot_detail.contractDay}}</p>
+    <p><H4>元請工事内容</H4>
+    <p>{{spot_detail.constractionDetail}}</p>
+    <p><H4>全体工期開始日</H4>
+    <p>{{spot_detail.firstActionDay}}</p>
+    <p><H4>全体工期終了日</H4>
+    <p>{{spot_detail.finishActionDay}}</p>
+    <hr>
+    <p><H4>上位協力会社名(一次)</H4>
+    <p>{{spot_detail.firstSubcontractor}}</p>
+    <hr>
+    {% comment %} 施工体制台帳用 {% endcomment %}
+    <p>{{spot_detail.X}}</p>
+    <p><H4>次協力会社名(基本装苑)</H4>
+    <table>
+    {% for X in spot_detail.XSubcontractor.all  %}
+    <tr><th>--------------------------</th><td>--------------------------------</td></tr>
+      <tr><th>会社名</th><td>{{ X.recentName}}</td></tr>
+      <tr><th>郵便番号</th><td>{{ X.postalCode}}</td></tr>
+      <tr><th>住所</th><td>{{ X.address}}</td></tr>
+      <tr><th>電話番号</th><td>{{ X.telephoneNumber}}</td></tr>
+      <tr><th>FAX番号</th><td>{{ X.FaxNumber}}</td></tr>
+      <tr><th>代表者名</th><td>{{ X.representative}}</td></tr>
+      <tr><th>安全衛生責任者</th><td>{{ X.saftyManager}}</td></tr>
+      <tr><th>安全衛生推進者</th><td>{{ X.saftyPromoter}}</td></tr>
+      <tr><th>主任技術者</th><td>{{ X.leadEngineer}}</td></tr>
+      <tr><th>主任技術者免許証明Path</th><td>{{ X.file0}}</td></tr>
+      <tr><th>保険事業所名</th><td>{{ X.Insurance_station}}</td></tr>
+      <tr><th>保険事業所整理記号</th><td>{{ X.Insurance_station_number}}</td></tr>
+      <tr><th>健康保険</th><td>{{ X.healthInsurance}}</td></tr>
+      <tr><th>健康保険証明Path</th><td>{{ X.file1}}</td></tr>
+      <tr><th>年金保険</th><td>{{ X.pensionInsurance}}</td></tr>
+      <tr><th>年金保険証明Path</th><td>{{ X.file2}}</td></tr>
+      <tr><th>雇用保険</th><td>{{ X.employmentinsurance}}</td></tr>
+      <tr><th>雇用保険番号</th><td>{{ X.employmentinsurance_number}}</td></tr>
+      <tr><th>雇用保険証明Path</th><td>{{ X.file3}}</td></tr>
+      <tr><th>建退協</th><td>{{ X.retirementCooperation}}</td></tr>
+      <tr><th>建退協証明Path</th><td>{{ X.file4}}</td></tr>
+      <tr><th>建設業許可業種</th><td>{{ X.constractionPermit}}</td></tr>
+      <tr><th>大臣OR知事</th><td>{{ X.constractionPermit_chuji}}</td></tr>
+      <tr><th>特定OR一般</th><td>{{ X.constractionPermit_ippan}}</td></tr>
+      <tr><th>-年度</th><td>{{ X.constractionPermit_nendo}}</td></tr>
+      <tr><th>許可番号</th><td>{{ X.constractionPermit_num}}</td></tr>
+      <tr><th>許可(更新)年月日</th><td>{{ X.constractionPermit_gat}}</td></tr>
+      <tr><th>建設業許可証明Path</th><td>{{ X.file5}}</td></tr>
+      <tr><th>契約日</th><td>{{ X.contractDay}}</td></tr>
+      <tr><th>請負工期開始日</th><td>{{ X.firstActionDay}}</td></tr>
+      <tr><th>請負工期終了日</th><td>{{ X.finishActionDay}}</td></tr>
+      <tr><th>請負工事内容</th><td>{{ X.contractionDetail}}</td></tr>
+      <tr><th>一号特定技能外国人の従事有無</th><td>{{ X.No_1_specific_skill_foreigner}}</td></tr>
+      <tr><th>外国人建設就労者の従事有無</th><td>{{ X.foreignWorker}}</td></tr>
+      <tr><th>外国人技能実習生の従事有無</th><td>{{ X.foreignIntern}}</td></tr>
+      <tr><th>持込機械</th><td>{{ X.carryonMachine}}</td></tr>
+      {% for neh in X.vehicle.all  %}
+        <tr><th>車両番号</th><td>{{ neh.vehicleNumber }}</td></tr>
+        <tr><th>乗入会社名</th><td>{{ neh.mrecent }}</td></tr>
+        <tr><th>車両番号</th><td>{{ neh.vehicleNumber }}</td></tr>
+        <tr><th>使用開始日</th><td>{{ neh.firstUse }}</td></tr>
+        <tr><th>使用終了予定日</th><td>{{ neh.finishUse }}</td></tr>
+        <tr><th>(車検証)車両型式</th><td>{{ neh.vehicleModel }}</td></tr>
+        <tr><th>(車検証)車検期間開始日</th><td>{{ neh.firstInspection }}</td></tr>
+        <tr><th>(車検証)車検期間終了日</th><td>{{ neh.finishInspection }}</td></tr>
+        <tr><th>(車検証)Path</th><td>{{ neh.file1 }}</td></tr>
+        <tr><th>(自賠責)保険会社名</th><td>{{ neh.liabilityComp }}</td></tr>
+        <tr><th>(自賠責)証券番号</th><td>{{ neh.liability_num }}</td></tr>
+        <tr><th>(自賠責)保険期間開始日</th><td>{{ neh.firstliability }}</td></tr>
+        <tr><th>(自賠責)保険期間終了日</th><td>{{ neh.finishliability }}</td></tr>
+        <tr><th>(自賠責)Path</th><td>{{ neh.file2 }}</td></tr>
+        <tr><th>(任意保険)保険会社名</th><td>{{ neh.voluntaryInsureComp }}</td></tr>
+        <tr><th>(任意保険)証券番号</th><td>{{ neh.voluntaryInsureNum }}</td></tr>
+        <tr><th>(任意保険)保険期間開始日</th><td>{{ neh.firstVoluntary }}</td></tr>
+        <tr><th>(任意保険)保険期間終了日</th><td>{{ neh.finishVoluntary }}</td></tr>
+        <tr><th>(任意保険)対物</th><td>{{ neh.voluntary_object }}</td></tr>
+        <tr><th>(任意保険)対人</th><td>{{ neh.voluntary_human }}</td></tr>
+        <tr><th>(任意保険)搭乗者</th><td>{{ neh.voluntary_passenger }}</td></tr>
+        <tr><th>(任意保険)Path</th><td>{{ neh.file3 }}</td></tr>
+            {% for dv in neh.driver.all %}
+              <tr><th>運転手名</th><td>{{ dv.name }}</td></tr>
+            {% endfor %}
+        <tr><th>車両出発地</th><td>{{ neh.drive_departure }}</td></tr>
+        <tr><th>車両経由地1</th><td>{{neh.drive_waypoint1 }}</td></tr>
+        <tr><th>車両経由地2</th><td>{{neh.drive_waypoint2 }}</td></tr>
+        <tr><th>車両到着地</th><td>{{ neh.drive_arrival }}</td></tr> 
+      {% endfor %} 
+      <tr><th>移動式ｸﾚｰﾝ･車両系建設機械</th><td>{{ X.mobileCrane}}</td></tr>
+      <tr><th>危険物･有機溶剤･特定化学物質</th><td>{{ X.dangerous}}</td></tr>
+      {% for mems in spot_detail.XSubcontractor.all  %}
+        {% for mem in mems.members.all %}
+            <tr><th>メンバー</th><td>{{ mem.name }}</td></tr>
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    </table>
+    <hr>
+
+    {% comment %} 職人さん作業員名簿用 {% endcomment %}
+    <p>{{spot_detail.Xx}}</p>
+    <p><H4>次協力会社名(基本職方)</H4>
+    <table>
+    {% for Xx in spot_detail.XxSubcontractor.all  %}
+        <tr><th>--------------------------</th><td>--------------------------------</td></tr>
+        {% comment %} <tr><th>checked</th><td>{{ Xx.checking }}</td></tr> {% endcomment %}
+        <tr><th>exｺｰﾄﾞ</th><td>{{ Xx.code }}</td></tr>
+        <tr><th>会社名</th><td>{{ Xx.djgroup }}</td></tr>
+        <tr><th>代表者名</th><td>{{ Xx.name }}</td></tr>
+        <tr><th>ﾅﾏｴ_ｶﾅ</th><td>{{ Xx.kanaName }}</td></tr>
+        <tr><th>所属(ｿｳｴﾝ)</th><td>{{ Xx.djgroup2 }}</td></tr>
+        <tr><th>職種</th><td>{{ Xx.occupation }}</td></tr>
+        <tr><th>担当</th><td>{{ Xx.refer }}</td></tr>             
+        <tr><th>誕生日</th><td>{{ Xx.birthday }}</td></tr>
+        <tr><th>年齢</th><td>{{ Xx.age }}</td></tr>
+        <tr><th>雇用年月日</th><td>{{ Xx.dateOfEmployment }}</td></tr>
+        <tr><th>該当職種に就労した年齢</th><td>{{ Xx.workingFirstDate }}</td></tr>
+        <tr><th>経験年数</th><td>{{ Xx.yearsOfExperience }}</td></tr>
+        <tr><th>郵便番号</th><td>{{ Xx.postalCode }}</td></tr>
+        <tr><th>住所</th><td>{{ Xx.address }}</td></tr>
+        <tr><th>電話番号</th><td>{{ Xx.telephoneNumber }}</td></tr>
+        <tr><th>家族住所</th><td>{{ Xx.familyAdd }}</td></tr>
+        <tr><th>電話番号(家族)</th><td>{{ Xx.tel }}</td></tr>
+        <tr><th>健康診断日</th><td>{{ Xx.medicalCheckUp }}</td></tr>
+        <tr><th>血圧</th><td>{{ Xx.bloodPressure }}</td></tr>
+        <tr><th>血液型</th><td>{{ Xx.bloodType }}</td></tr>
+        <tr><th>特殊健康診断</th><td>{{ Xx.specialHealthCheck }}</td></tr>
+        <tr><th>種類(特殊健康診断)</th><td>{{ Xx.SHCkind }}</td></tr>
+        <tr><th>安全衛生責任者</th><td>{{ Xx.saftyManager }}</td></tr>
+        <tr><th>安全衛生推進者</th><td>{{ Xx.saftyPromoter }}</td></tr>
+        <tr><th>主任技術者</th><td>{{ Xx.leadEngineer }}</td></tr>
+        <tr><th>Link0</th><td>{{ Xx.file0 }}</td></tr>
+        <tr><th>保険＿事業所名</th><td>{{ Xx.Insurance_station }}</td></tr>
+        <tr><th>保険＿事業所名_整理記号･番号</th><td>{{ Xx.Insurance_station_number }}</td></tr>
+        <tr><th>健康保険</th><td>{{ Xx.healthInsurance }}</td></tr>
+        <tr><th>下4桁(健康診断)</th><td>{{ Xx.HIlast4digits }}</td></tr>
+        <tr><th>健康保険証明Path</th><td>{{ Xx.file1 }}</td></tr>
+        <tr><th>年金保険</th><td>{{ Xx.pensionInsurance }}</td></tr>
+        <tr><th>年金保険証明Path</th><td>{{ Xx.file2 }}</td></tr>
+        <tr><th>雇用保険</th><td>{{ Xx.employmentinsurance }}</td></tr>
+        <tr><th>下4桁(雇用保険)</th><td>{{ Xx.EIlast4digits }}</td></tr>
+        <tr><th>雇用保険証明Path</th><td>{{ Xx.file3 }}</td></tr>
+        <tr><th>建退協</th><td>{{ Xx.retirementCooperation }}</td></tr>
+        <tr><th>建退協証明Path</th><td>{{ Xx.file4 }}</td></tr>
+               {% for sp in Xx.specialEducation.all  %} 
+                
+                    <tr><th>雇用･職長･特別教育</th><td>{{ sp.name }}</td></tr>
+              
+               {% endfor %} 
+        <tr><th>雇用･職長･特別教育証明path</th><td>{{ Xx.file5 }}</td></tr>
+
+                 {% for SkT in Xx.skillTraning.all %}
+                    <tr><th>技能講習</th><td>{{ SkT.name }}</td></tr>
+                {% endfor %}
+        <tr><th>技能講習Path</th><td>{{ Xx.file6 }}</td></tr>
+
+                {% for lic in Xx.licence.all  %}
+                    <tr><th>免許</th><td>{{ lic.name }}</td></tr>
+                {% endfor %}
+        <tr><th>免許Path</th><td>{{ Xx.file7 }}</td></tr>
+
+        <tr><th>運転免許証番号</th><td>{{ Xx.driverLicence_number }}</td></tr>
+        <tr><th>運転免許証Path</th><td>{{ Xx.file8 }}</td></tr>
+        <tr><th>現場新規入場年月日</th><td>{{ Xx.dateOfAdmission }}</td></tr>
+        <tr><th>予備FilePath1<th><td>{{ Xx.file9 }}</td></tr>
+        <tr><th>予備FilePath2</th><td>{{ Xx.file10 }}</td></tr>
+    {% endfor %}
+    </table>
+    <hr>
+    <br>
+{% endblock %}
+<hr>
+{% block side_b %}
+    <p><h3><a href="{% url 'actualSpot:spotlist'  %}">現場LIST</a></h3></p>
+    <p><a href="{% url 'reimex:mlist'  %}">職方LIST</a></p>
+    <p><a href="{% url 'actualSpot:alist'  %}">協力会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:glist'  %}">zene会社LIST</a></p>
+    <p><a href="{% url 'actualSpot:vehiclelist'  %}">車両LIST</a></p>
+    <hr>
+        <a class='btn btn-primary' href="{% url 'reimex:aspot' %}"> ！！！True(編集画面で選択チェックを！)！！！このメンバーで名簿の作成</a>
+    <p>出力⇒古賀：C:\Users\PCUSER\Desktop\tesdata\output_data\{0:%Y%m%d_%H%M%S}.xlsm</p>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+
+
+  
+  
+  
+  
+  
+  
