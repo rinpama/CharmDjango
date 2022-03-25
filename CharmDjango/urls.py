@@ -28,11 +28,10 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     # path('markdownx/', include('markdownx.urls')),
 
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
-# 開発環境でのメディアファイルの配信設定 if settings.DEBUG:
-urlpatterns += static(
-    settings.MEDIA_URL,
-    document_root=settings.MEDIA_ROOT
-)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+# # 開発環境でのメディアファイルの配信設定 if settings.DEBUG:
+# urlpatterns += static(
+#     settings.MEDIA_URL,
+#     document_root=settings.MEDIA_ROOT)
