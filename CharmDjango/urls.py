@@ -37,3 +37,13 @@ urlpatterns = [
 # urlpatterns += static(
 #     settings.MEDIA_URL,
 #     document_root=settings.MEDIA_ROOT)
+from Soen.views import my_customized_server_error
+handler500 = my_customized_server_error
+from m3ch.views import my_customized_server_error
+handler500 = my_customized_server_error
+from Show.views import my_customized_server_error
+handler500 = my_customized_server_error
+from actualSpot.views import my_customized_server_error
+handler500 = my_customized_server_error
+from reimex.views import my_customized_server_error
+handler500 = my_customized_server_error

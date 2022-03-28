@@ -174,7 +174,7 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
 
-django_heroku.settings(locals())
+
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import (
     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
