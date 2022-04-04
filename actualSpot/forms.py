@@ -16,8 +16,8 @@ class AspotForm(forms.ModelForm):
 class MostRecentForm(forms.ModelForm):
         class Meta():
             model= mostRecent
-            fields='__all__'
-
+            # fields='__all__'
+            fields=['recentName']
 class gContractorForm(forms.ModelForm):
         class Meta():
             model= gContractor

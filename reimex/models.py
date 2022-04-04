@@ -185,11 +185,11 @@ class SoenModel(models.Model):
     file3= models.FileField(verbose_name="Link3雇用保険",max_length=100,null=True,blank=True)
     retirementCooperation= models.CharField(verbose_name="建退協",max_length=100,null=True,blank=True,choices=retirementCooperation_list)
     file4= models.FileField(verbose_name="Link4建退協",max_length=100,null=True,blank=True)
-    specialEducation= models.ManyToManyField(SpecialEducationModel)
+    specialEducation= models.ManyToManyField(SpecialEducationModel,null=True,blank=True)
     file5= models.FileField(verbose_name="Link5雇用・職長・特別教育",max_length=100,null=True,blank=True)
-    skillTraning= models.ManyToManyField(SkillTraningModel)
+    skillTraning= models.ManyToManyField(SkillTraningModel,null=True,blank=True)
     file6= models.FileField(verbose_name="Link6技能講習",max_length=100,null=True,blank=True)
-    licence=models.ManyToManyField(LicenceModel)
+    licence=models.ManyToManyField(LicenceModel,null=True,blank=True)
     file7= models.FileField(verbose_name="Link免許",max_length=100,null=True,blank=True)
     driverLicence_number= models.CharField(verbose_name="自動車免許番号",max_length=100,null=True,blank=True)
     file8= models.FileField(verbose_name="Link自動車免許証",max_length=100,null=True,blank=True)
@@ -213,7 +213,7 @@ class SoenModel(models.Model):
     foreignWorker= models.CharField(verbose_name="外国人建設就労者",max_length=100,null=True,blank=True,choices=free_list)
     foreignIntern= models.CharField(verbose_name="外国人技能実習生",max_length=100,null=True,blank=True,choices=free_list)
     carryonMachine= models.CharField(verbose_name="持込機械",max_length=100,null=True,blank=True,choices=carryonMachine_list)
-    mvehicle= models.ManyToManyField('actualSpot.Vehicle')  #車両vehicle
+    mvehicle= models.ManyToManyField('actualSpot.Vehicle',null=True,blank=True)  #車両vehicle
     mobileCrane= models.CharField(verbose_name="移動式ｸﾚｰﾝ･車両系建設機械",max_length=100,null=True,blank=True)
     dangerous= models.CharField(verbose_name="危険物OR有機溶剤OR特定化学物質",max_length=100,null=True,blank=True)
     def __str__(self):

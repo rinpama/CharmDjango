@@ -153,7 +153,7 @@ class mostRecent(models.Model):
 class Aspot(models.Model):
     checking=models.BooleanField(verbose_name="選択フラグ",default=False)
     spotName= models.CharField(verbose_name="現場名",max_length=50,default='必須')
-    gContractor=models.ManyToManyField('gContractor') #ｾﾞﾈ会社
+    gContractor=models.ManyToManyField('gContractor',null=True,blank=True) #ｾﾞﾈ会社
     superVisor= models.CharField(verbose_name="現場所長名",max_length=50,default='必須')
     address=models.CharField(max_length=50,verbose_name="現場住所",null=True,blank=True)
     contractDay= models.DateField(verbose_name="ｾﾞﾈ請負契約日",null=True,blank=True)
@@ -162,9 +162,9 @@ class Aspot(models.Model):
     finishActionDay= models.DateField(verbose_name="全体終了工期",null=True,blank=True)
     firstSubcontractor=models.CharField(verbose_name="上位会社",max_length=50,null=True,blank=True)
     X= models.IntegerField(verbose_name="X次",default='1')
-    XSubcontractor= models.ManyToManyField('mostRecent') #基本装苑
+    XSubcontractor= models.ManyToManyField('mostRecent',null=True,blank=True) #基本装苑
     Xx= models.IntegerField(verbose_name="Xx次",default='2')
-    XxSubcontractor= models.ManyToManyField('reimex.SoenModel') #協力会社
+    XxSubcontractor= models.ManyToManyField('reimex.SoenModel',null=True,blank=True) #協力会社
     
     
     
