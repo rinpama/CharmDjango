@@ -1,6 +1,6 @@
 from django import forms
 from .models import MemberMo,MemberDetailMo,BlogMo
-from django_summernote.widgets import SummernoteWidget
+# from django_summernote.widgets import SummernoteWidget
 
 class IdSearch(forms.Form):  # index
     name = forms.CharField(label='name', max_length=15)
@@ -34,5 +34,5 @@ class BlogF(forms.ModelForm):
     class Meta:
         model=BlogMo
         fields = ['title', 'text']
-        widgets = {'text': SummernoteWidget(),}
+        # widgets = {'text': SummernoteWidget(),}
 

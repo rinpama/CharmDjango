@@ -459,7 +459,7 @@ def func(self,*args,**kwargs):
                         dxxlic=set(xxlic)
                 xxfile7.append(Xx.file7)#*********************************************************************         
     
-    wb= load_workbook (filename=r"C:\Users\PCUSER\Desktop\tesdata\input_data\グリーンファイル.xlsx",read_only=False,keep_vba=True)
+    wb= load_workbook (filename=r"reimex/application/tesdata/input_data/グリーンファイル.xlsx",read_only=False,keep_vba=True)
     ws=wb['Sheet1']
     ws.cell(2,5,value=spotName)
     ws.cell(2,6,value=superVisor)
@@ -664,9 +664,14 @@ def func(self,*args,**kwargs):
             ws.cell(60+i,5,value=m[0]+':'+m[1])
             
     
-    wb.save(r"C:\Users\PCUSER\Desktop\tesdata\output_data\{0:%Y%m%d_%H%M%S}.xlsm".format(now))
+    wb.save(r"reimex/application/tesdata/output_data\{0:%Y%m%d_%H%M%S}.xlsm".format(now))
     print('finished')
-    
+    for i in range(1,10,1):
+        for j in range(1,10,1):
+            if wb['Sheet1'].cell(i,j) != '':
+                print(wb['Sheet1'].cell(i,j),':',wb['Sheet1'].cell(i,j).value)
+
+
 if __name__=="__main__":
     func()
     

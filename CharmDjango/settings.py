@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_summernote',
+
     'markdownx',
     'accounts',
     'm3ch',
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'Show',
     'actualSpot',
     'reimex',
+
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -84,6 +87,7 @@ WSGI_APPLICATION = 'CharmDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 import dj_database_url
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -137,12 +141,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
-if DEBUG:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-# else:
-#     PROJECT_NAME = os.path.basename(BASE_DIR)
-#     # ↓ は一般的なLinuxサーバーにデプロイする場合のパス。クラウドにデプロイする場合、下記は要修正。
-#     MEDIA_ROOT = "/var/www/{}/media".format(PROJECT_NAME)
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# if DEBUG:
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your_cloud_name',
+    'API_KEY': 'your_api_key',
+    'API_SECRET': 'your_api_secret'
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -152,30 +159,16 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/logmain'
 LOGOUT_REDIRECT_URL = '/accounts/login'  # ''
 
-# https://python-markdown.github.io/extensions/
-MARKDOWNX_MARKDOWN_EXTENSIONS = [
-    # HTMLでのマークダウン'markdown.extensions.md_in_html'
-    'md_in_html',
-    # テーブル'markdown.extensions.tables'
-    'tables',
-]
-MARKDOWNX_IMAGE_MAX_SIZE = {
-    'size': (500, 500), 'quality': 90
-}
-
-SUMMERNOTE_THEME = 'bs4'
-X_FRAME_OPTOPNS = 'SAMEORIGIN'
-
 try:
     from CharmDjango.local_settings import *
 except ImportError:
     pass
 if not DEBUG:
     import django_heroku
-    django_heroku.settings(locals())
 
+    django_heroku.settings(locals())
 
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import (
     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
-    HttpResponseServerError,)
+    HttpResponseServerError, )
