@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'markdownx',
+    # 'django_summernote'
+    # 'markdownx',
     'accounts',
     'm3ch',
     'Soen',
