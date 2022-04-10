@@ -24,7 +24,7 @@ class MemberDetailMo(models.Model):
 class BlogMo(models.Model):
     memberm2 = models.ForeignKey(MemberMo, on_delete=models.CASCADE, related_name='blog')
     title = models.CharField('ﾀｲﾄﾙ', max_length=50, blank=True, null=True,default='title')
-    text = models.TextField('ﾃｷｽﾄ & ﾌｫﾄ', blank=True, null=True,default='text')
+    text = models.TextField('ﾃｷｽﾄ', blank=True, null=True,default='text')
     created_at = models.DateField('作成日', auto_now_add=True)
     updated_at = models.DateField('更新日', auto_now=True)
 
