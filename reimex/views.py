@@ -94,7 +94,7 @@ def spotFalse(self):
 
 
 # ***********************************************************************
-
+# **********************************************************************
 # ***********************************************************************
 # -----作業員名簿　職方記載用Scripts----
 from django.template import loader
@@ -103,18 +103,26 @@ def testprint(self):
     test_module.func()
     # params= {}
     return render(self,'reimex/list.html')#,params)
-# **********************************************************************
 
 # ***********************************************************************
 # -----施工体制台帳用記載用Scripts----
-from django.template import loader
-from .application import Aspot_module                 
+from .application import Aspot_module
 def aspot(self):
     Aspot_module.func(self)
-    # params= {}
-    return render(self,'actualSpot/spotlist.html')#,params)
+    return redirect('actualSpot:spotlist')
+# **********************************************************************
+from .application import AspotToExcel_module
+def aspotToExcel(self):
+    AspotToExcel_module.func(self)
+    return redirect('actualSpot:spotlist')
 # **********************************************************************
 
+
+
+
+
+
+#　↓　これは本番deploy後に消すように（デプロイ後用ERROR探査）ほかの場所にもあるからチャンと探して消してね
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import HttpResponseServerError    
 @requires_csrf_token
