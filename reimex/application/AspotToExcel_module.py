@@ -662,30 +662,9 @@ def func(self, *args, **kwargs):
     # wb.save(r"reimex/application/tesdata/output_data/{0:%Y%m%d_%H%M%S}.xlsm".format(now))
     wb.save(r"reimex/application/tesdata/output_data/outputsample.xlsm".format(now))
 
-    import win32com.client
-    import pythoncom
-
-    # 読み込み元ファイルと書き込み先を指定する
-    base = os.path.dirname(__file__)
-    input_file = os.path.join(base, "tesdata/output_data/outputsample.xlsm")
-    # output_file = os.path.join(base, "output.pdf")
-
-    # Excelを起動する
-    pythoncom.CoInitialize()
-    app=win32com.client.Dispatch("Excel.Application")
-    app.Visible = True
-    app.DisplayAlerts = False
-
-    # Excelでワークブックを読み込む
-    book = app.Workbooks.Open(input_file)
-
-    # PDF形式で保存
-    # xlTypePDF = 0
-    # book.ExportAsFixedFormat(xlTypePDF, output_file)
-
-    # Excelを終了
-    # app.Quit()
-    # pythoncom.CoUninitialize()
+    import subprocess
+    EXCEL = r"reimex/application/tesdata/output_data/outputsample.xlsm"
+    subprocess.Popen(['start', EXCEL], shell=True)
 
 if __name__ == "__main__":
     func()

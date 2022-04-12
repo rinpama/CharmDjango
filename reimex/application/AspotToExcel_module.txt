@@ -1,0 +1,10 @@
+import win32com.client
+import pythoncom
+import os
+base = os.path.dirname(__file__)
+input_file = os.path.join(base, "tesdata/output_data/outputsample.xlsm")
+pythoncom.CoInitialize()
+app=win32com.client.Dispatch("Excel.Application")
+app.Visible = True
+app.DisplayAlerts = False
+book = app.Workbooks.Open(input_file)
