@@ -91,7 +91,7 @@ db_from_env = dj_database_url.config()#*
 DATABASES['default'].update(db_from_env)#*
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER=config('SECURE_PROXY_SSL_HEADER',cast=Csv(prst_process=tuple))
+SECURE_PROXY_SSL_HEADER=config('SECURE_PROXY_SSL_HEADER',cast=Csv(post_process=tuple))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -127,11 +127,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
 ## 開発時 #
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static/')    #スタティックファイルが格納されるディレクトリを指定します。
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)    #スタティックファイルが格納されるディレクトリを指定します。
 
-# # 本番環境 # 例 # STATIC_ROOT='/var/www/static'
-# STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# 本番環境 # 例 # STATIC_ROOT='/var/www/static'
+STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
