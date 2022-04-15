@@ -91,7 +91,7 @@ db_from_env = dj_database_url.config()#*
 DATABASES['default'].update(db_from_env)#*
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER=config('SECURE_PROXY_SSL_HEADER',cast=Csv(post_process=tuple))
+SECURE_PROXY_SSL_HEADER=config('SECURE_PROXY_SSL_HEADER',default='',cast=Csv(post_process=tuple))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
