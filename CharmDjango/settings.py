@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+from decouple import config, Csv
+import dj_database_url
 from pathlib import Path
 import os
 import django_heroku
@@ -22,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # from .local_settings import SECRET_KEY######
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
-
+# config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,18 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_summernote'
-    # 'markdownx',
     'accounts',
     'm3ch',
     'Soen',
     'Show',
     'actualSpot',
     'reimex',
-
-    'cloudinary',
-    'cloudinary_storage',
-
 ]
 
 MIDDLEWARE = [
@@ -86,19 +81,17 @@ WSGI_APPLICATION = 'CharmDjango.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-import dj_database_url
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config()#*
+DATABASES['default'].update(db_from_env)#*
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER=config('SECURE_PROXY_SSL_HEADER',cast=Csv(prst_process=tuple))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -132,23 +125,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
-# 開発時
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/')]
-# 本番環境 # STATIC_ROOT='/var/www/static' # 例
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
+## 開発時 #
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static/')    #スタティックファイルが格納されるディレクトリを指定します。
+
+# # 本番環境 # 例 # STATIC_ROOT='/var/www/static'
+# STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-# if DEBUG:
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'your_cloud_name',
-    'API_KEY': 'your_api_key',
-    'API_SECRET': 'your_api_secret'
-}
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -158,15 +145,11 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/logmain'
 LOGOUT_REDIRECT_URL = '/accounts/login'  # ''
 
-try:
-    from CharmDjango.local_settings import *
-except ImportError:
-    pass
 if not DEBUG:
     import django_heroku
-
     django_heroku.settings(locals())
 
+# ↓　deploy時のDEBUG確認
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import (
     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
