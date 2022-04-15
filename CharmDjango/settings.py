@@ -137,7 +137,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/')]
 # 本番環境 # STATIC_ROOT='/var/www/static' # 例
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
@@ -149,7 +149,6 @@ CLOUDINARY_STORAGE = {
     'API_KEY': 'your_api_key',
     'API_SECRET': 'your_api_secret'
 }
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
