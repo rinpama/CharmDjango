@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 # from decouple import config, Csv
 import environ
-env=environ.Env()
-env.read_env('env')
 import dj_database_url
 from pathlib import Path
 import os
@@ -21,12 +19,16 @@ import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env=environ.Env()
+env.read_env('.env')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # from .local_settings import SECRET_KEY######
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY=env('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 env=environ.Env(DEBUG=(bool,False))
 DEBUG = env('DEBUG')
@@ -101,8 +103,7 @@ DATABASES['default'].update(db_from_env)#*
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
+SECURE_PROXY_SSL_HEADER = env('SECURE_PROXY_SSL_HEADER')
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
