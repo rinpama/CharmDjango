@@ -114,6 +114,7 @@ def aspot(self):
 from .application import AspotToExcel_module
 def aspotToExcel(self):
     AspotToExcel_module.func(self)
+    # print(wb)
     return redirect('actualSpot:spotlist')
 # **********************************************************************
 

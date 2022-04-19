@@ -143,8 +143,8 @@ USE_TZ = True
 
 # 本番環境 # 例 # STATIC_ROOT='/var/www/static'
 STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')

@@ -661,9 +661,8 @@ def func(self, *args, **kwargs):
 
     # wb.save(r"reimex/application/tesdata/output_data/{0:%Y%m%d_%H%M%S}.xlsm".format(now))
     wb.save(r"reimex/application/tesdata/output_data/outputsample.xlsm".format(now))
-
+    print(wb.sheetnames)
     #modelにfileとして保存します。https://zerofromlight.com/blogs/detail/81/
-
 
 if __name__ == "__main__":
     func()
