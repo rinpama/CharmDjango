@@ -9,7 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-from decouple import config, Csv
+# from decouple import config, Csv
+import environ
+env=environ.Env()
+env.read_env('env')
 import dj_database_url
 from pathlib import Path
 import os
@@ -23,12 +26,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # from .local_settings import SECRET_KEY######
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+env=environ.Env(DEBUG=(bool,False))
+DEBUG = env('DEBUG')
+#or
+# env.environ.Env(DEBUG=(bool,False))
+#DEBUG=env.get_value('DEBUG',cast=bool,default=False)
 
 # config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
@@ -86,14 +93,15 @@ WSGI_APPLICATION = 'CharmDjango.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=env('DATABASE_URL')
     )
 }
 db_from_env = dj_database_url.config()#*
 DATABASES['default'].update(db_from_env)#*
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER=config('SECURE_PROXY_SSL_HEADER',default='',cast=Csv(post_process=tuple))
+
+SECURE_PROXY_SSL_HEADER=env.list('SECURE_PROXY_SSL_HEADER')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -134,9 +142,9 @@ USE_TZ = True
 # 本番環境 # 例 # STATIC_ROOT='/var/www/static'
 STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
