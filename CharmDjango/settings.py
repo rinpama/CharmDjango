@@ -144,11 +144,12 @@ STATIC_URL = '/static/'     #スタティックファイルの URL を指定し�
 # 本番環境 # 例 # STATIC_ROOT='/var/www/static'
 STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
@@ -159,8 +160,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -178,9 +177,9 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
 
-# ↓　deploy時のDEBUG確認
-from django.views.decorators.csrf import requires_csrf_token
-from django.http import (
-    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
-    HttpResponseServerError, )
-del DATABASES['default']['OPTIONS']['sslmode']
+# # ↓　deploy時のDEBUG確認
+# from django.views.decorators.csrf import requires_csrf_token
+# from django.http import (
+#     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
+#     HttpResponseServerError, )
+# del DATABASES['default']['OPTIONS']['sslmode']
