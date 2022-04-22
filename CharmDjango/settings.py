@@ -37,7 +37,7 @@ DEBUG = env('DEBUG')
 #DEBUG=env.get_value('DEBUG',cast=bool,default=False)
 
 # config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.get_value('ALLOWED_HOSTS',list)
 # Application definition
 
 INSTALLED_APPS = [
