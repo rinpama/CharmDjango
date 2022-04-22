@@ -38,7 +38,7 @@ urlpatterns = [
 #     settings.MEDIA_URL,
 #     document_root=settings.MEDIA_ROOT)
 
-
+# ↓　deploy時のDEBUG確認(settings & app.views に配置)
 # from Soen.views import my_customized_server_error
 # handler500 = my_customized_server_error
 # from m3ch.views import my_customized_server_error

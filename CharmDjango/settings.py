@@ -138,32 +138,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
-# ## 開発時 #
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)    #スタティックファイルが格納されるディレクトリを指定します。
+## 開発時(DEBUG=True) #
+#django.contrib.staticfilesを使い、各app直下のstaticディレクトリから、runserver実行時に自動的に各staticﾌｧｲﾙを配信
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]   #共通スタティックのディレクトリを指定(manage.py同列)。
 
-# 本番環境 # 例 # STATIC_ROOT='/var/www/static'
-STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# 本番環境(Debug=False)＝＞django.contrib.staticfilesがstaticファイルの配信を止める
+#　 ↓↓↓
+# #*whitenoise only?(一旦削除)
+# STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
+# # STATICFILES_STORAGE = 'whitenoise.storage.Compress
+# もしくは、
+#AWS S3
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
-]
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'#メディアファイル公開時のURLのプレフィクス(url=http://アプリのドメイン+MEDIA_URL+メディアファイル名)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#サーバから見たメディアルートの絶対パス(プロジェクトトップディレクトリ/media)
 
+DEFAULT_FILE_STORAGE = 'localupload.storage_backends.MediaStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -177,9 +178,9 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
 
-# ↓　deploy時のDEBUG確認
-from django.views.decorators.csrf import requires_csrf_token
-from django.http import (
-    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
-    HttpResponseServerError, )
-del DATABASES['default']['OPTIONS']['sslmode']
+# ↓　deploy時のDEBUG確認(config.urls止めてる)
+# from django.views.decorators.csrf import requires_csrf_token
+# from django.http import (
+#     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
+#     HttpResponseServerError, )
+# del DATABASES['default']['OPTIONS']['sslmode']
