@@ -37,7 +37,7 @@ DEBUG = env('DEBUG')
 #DEBUG=env.get_value('DEBUG',cast=bool,default=False)
 
 # config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
-ALLOWED_HOSTS = env.get_value('ALLOWED_HOSTS',list)
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
@@ -149,6 +149,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]   #共通スタティッ
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # # STATICFILES_STORAGE = 'whitenoise.storage.Compress
 # もしくは、
+
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
 #AWS S3
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
