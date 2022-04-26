@@ -19,24 +19,29 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('Soen.urls')),
     path('m3ch/', include('m3ch.urls')),
     path('show/',include('Show.urls')),
-    # path('summernote/', include('django_summernote.urls')),
+    path('summernote/', include('django_summernote.urls')),
     # path('markdownx/', include('markdownx.urls')),
     path('actualSpot/',include('actualSpot.urls')),
     path('reimex/',include('reimex.urls')),
 
-]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS) + static(settings.IMAGE_URL, document_root=settings.IMAGE_ROOT)
 
+# # 開発環境でのメディアファイルの配信設定
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
-# # 開発環境でのメディアファイルの配信設定 if settings.DEBUG:
-# urlpatterns += static(
-#     settings.MEDIA_URL,
-#     document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(
+    settings.IMAGE_URL,
+    document_root=settings.IMAGE_ROOT)
 
 # ↓　deploy時のDEBUG確認(settings & app.views に配置)
 from Soen.views import my_customized_server_error

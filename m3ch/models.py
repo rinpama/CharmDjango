@@ -21,13 +21,13 @@ class Blog(models.Model):
         verbose_name_plural='ブログ'
 
 # summernoteModel
-# class ImageBlog(models.Model):
-#     title = models.CharField('ﾀｲﾄﾙ', max_length=50)
-#     text = models.TextField('ﾃｷｽﾄ', blank=True, null=True)
-#     created_at = models.DateField('作成日', auto_now_add=True)
-#     updated_at = models.DateField('更新日', auto_now=True)
-#     def __str__(self):
-#         return self.title
-#     class Meta:
-#         verbose_name = 'mIMブログ'
-#         verbose_name_plural = 'mimプログ'
+class ImageBlog(models.Model):
+    title = models.CharField('ﾀｲﾄﾙ', max_length=50)
+    text = models.TextField('ﾃｷｽﾄ', blank=True, null=True)
+    created_at = models.DateField('作成日', auto_now_add=True)
+    updated_at = models.DateField('更新日', auto_now=True)
+    def __str__(self):
+        return self.title
+    class Meta:
+        verbose_name = 'mIMブログ'
+        verbose_name_plural = 'mimプログ'

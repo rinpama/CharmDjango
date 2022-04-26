@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Blog
-from .forms import Blogform
+from .models import Blog,ImageBlog
+from .forms import Blogform,ImageBlogform
 
 
 # Create your views here.
@@ -14,7 +14,7 @@ def top(request):
 
 
 def index(request):
-    blogs = Blog.objects.order_by('id')
+    blogs = ImageBlog.objects.order_by('id')
     form = Blogform()
     context = {
         'blogs': blogs,
@@ -24,14 +24,14 @@ def index(request):
 
 
 def detail(request, blog_id):
-    blog_text = get_object_or_404(Blog, id=blog_id)
+    blog_text = get_object_or_404(ImageBlog, id=blog_id)
     context = {
         'blog_text': blog_text
     }
     return render(request, 'm3ch/detail.html', context)
 
 def delete(request, blog_id):
-    record = get_object_or_404(Blog, id=blog_id)
+    record = get_object_or_404(ImageBlog, id=blog_id)
     if request.method == 'POST':
         record.delete()
         return redirect(to='m3ch:index')
@@ -45,12 +45,12 @@ def delete(request, blog_id):
 
 def add_form(request):
     if request.method == 'POST':
-        form = Blogform(request.POST)
+        form = ImageBlogform(request.POST)
         if form.is_valid():
             form.save()
             return redirect('m3ch:index')
     else:
-        form = Blogform()
+        form = ImageBlogform()
     context = {
         'form': form,
     }

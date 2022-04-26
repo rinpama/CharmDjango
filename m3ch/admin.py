@@ -1,12 +1,11 @@
 from django.contrib import admin
-from .models import Blog#,ImageBlog
+from .models import Blog,ImageBlog
 
 # from markdownx.admin import MarkdownxModelAdmin
 
-# from django_summernote.admin import SummernoteModelAdmin
-# class ImageBlogModelAdmin(SummernoteModelAdmin):
-#     summernote_fields = '__all__'
+from django_summernote.admin import SummernoteModelAdmin
+class ImageBlogModelAdmin(SummernoteModelAdmin):
+    summernote_fields = '__all__'
 
 admin.site.register(Blog)#, MarkdownxModelAdmin
-# admin.site.register(Image
-# Blog, ImageBlogModelAdmin)
+admin.site.register(ImageBlog, ImageBlogModelAdmin)
