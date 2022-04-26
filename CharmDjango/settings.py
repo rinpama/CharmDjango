@@ -137,7 +137,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
+# STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
 ## 開発時(DEBUG=True) #
 #django.contrib.staticfilesを使い、各app直下のstaticディレクトリから、runserver実行時に自動的に各staticﾌｧｲﾙを配信
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]   #共通スタティックのディレクトリを指定(manage.py同列)。
