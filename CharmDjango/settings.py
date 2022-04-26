@@ -179,9 +179,9 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
 
-# ↓　deploy時のDEBUG確認(config.urls止めてる)
-from django.views.decorators.csrf import requires_csrf_token
-from django.http import (
-    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
-    HttpResponseServerError, )
-del DATABASES['default']
+# # ↓　deploy時のDEBUG確認(config.urls止めてる)
+# from django.views.decorators.csrf import requires_csrf_token
+# from django.http import (
+#     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
+#     HttpResponseServerError, )
+# del DATABASES['default']['OPTIONS']['sslmode']
