@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,35 +137,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-# STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
+STATIC_URL = '/static/'     #スタティックファイルの URL を指定します。
 ## 開発時(DEBUG=True) #
 #django.contrib.staticfilesを使い、各app直下のstaticディレクトリから、runserver実行時に自動的に各staticﾌｧｲﾙを配信
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]   #共通スタティックのディレクトリを指定(manage.py同列)。
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]   #共通スタティックのディレクトリを指定(manage.py同列)。
 
 # 本番環境(Debug=False)＝＞django.contrib.staticfilesがstaticファイルの配信を止める
-#　 ↓↓↓
-# #*whitenoise only?(一旦削除)
-STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-# # STATICFILES_STORAGE = 'whitenoise.storage.Compress
-
-# もしくは、
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #AWS S3
-from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+# from boto.s3.connection import S3Connection
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY =  env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400',}
-AWS_LOCATION = 'static'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
-
-MEDIA_URL = '/media/'#メディアファイル公開時のURLのプレフィクス(url=http://アプリのドメイン+MEDIA_URL+メディアファイル名)
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#サーバから見たメディアルートの絶対パス(プロジェクトトップディレクトリ/media)
-DEFAULT_FILE_STORAGE = 'localupload.storage_backends.MediaStorage'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
