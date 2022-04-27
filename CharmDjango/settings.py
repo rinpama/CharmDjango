@@ -149,7 +149,7 @@ IMAGE_URL = '/images/'
 
 
 # 本番環境(Debug=False)＝＞django.contrib.staticfilesがstaticファイルの配信を止める
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # AWS S3

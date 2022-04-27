@@ -44,13 +44,13 @@ if settings.DEBUG:
     document_root=settings.IMAGE_ROOT)
 
 # ↓　deploy時のDEBUG確認(settings & app.views に配置)
-from Soen.views import my_customized_server_error
-handler500 = my_customized_server_error
-from m3ch.views import my_customized_server_error
-handler500 = my_customized_server_error
-from Show.views import my_customized_server_error
-handler500 = my_customized_server_error
-from actualSpot.views import my_customized_server_error
-handler500 = my_customized_server_error
-from reimex.views import my_customized_server_error
-handler500 = my_customized_server_error
+# from Soen.views import my_customized_server_error
+# handler500 = my_customized_server_error
+# from m3ch.views import my_customized_server_error
+# handler500 = my_customized_server_error
+# from Show.views import my_customized_server_error
+# handler500 = my_customized_server_error
+# from actualSpot.views import my_customized_server_error
+# handler500 = my_customized_server_error
+# from reimex.views import my_customized_server_error
+# handler500 = my_customized_server_error
