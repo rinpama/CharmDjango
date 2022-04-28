@@ -15,10 +15,8 @@ def top(request):
 
 def index(request):
     blogs = ImageBlog.objects.order_by('id')
-    form = Blogform()
     context = {
         'blogs': blogs,
-        'form': form,
     }
     return render(request, 'm3ch/index.html', context)
 

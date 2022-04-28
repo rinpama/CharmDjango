@@ -28,7 +28,7 @@
 {#{% endblock %}#}
 
 {% block main %}
-    <form action="{% url 'm3ch:add_form' %}" method="POST">
+    <form action="{% url 'm3ch:add_form' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         {{ form.media }}

@@ -15,7 +15,7 @@ class Blogform(forms.ModelForm):
 class ImageBlogform(forms.ModelForm):
     class Meta:
         model = ImageBlog
-        fields = '__all__'
+        fields = '__all__'#('title','text')
         widgets = {
             'text': SummernoteWidget(),
         }
