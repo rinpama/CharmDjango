@@ -143,7 +143,7 @@ USE_TZ = True
 # その後、web serverにSTATIC_ROOT(static/)を見に行くようにSTATIC_URLで指定
 
 ## 開発時(DEBUG=True) #
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets'), ]  # 共通スタティックのディレクトリを指定(manage.py同列)。
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'asset'), ]  # 共通スタティックのディレクトリを指定(manage.py同列)。
 #各app直下のstaticディレクトリから、 django.contrib.staticfilesを使い、runserver実行時に自動的に各staticﾌｧｲﾙを配信
 
 # 本番環境(Debug=False)＝＞django.contrib.staticfilesがapp/staticファイルの配信を止めるので、collectstaticで1ヶ所に集める
@@ -152,24 +152,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATIC_URL = '/static/'  # スタティックファイルの URL を指定します。
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
-
-
 # AWS S3
-from boto.s3.connection import S3Connection
+# from boto.s3.connection import S3Connection
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com'% AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400',}
 AWS_LOCATION = 'static'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+AWS_DEFAULT_ACL = None
+STATIC_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATICFILES_STORAGE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_REGION_NAME = 'ap-northeast-1'
+# AWS_S3_REGION_NAME = 'ap-northeast-1'
 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
