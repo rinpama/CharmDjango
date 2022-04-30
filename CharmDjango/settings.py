@@ -37,9 +37,10 @@ DEBUG = env('DEBUG')
 # DEBUG=env.get_value('DEBUG',cast=bool,default=False)
 
 # config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+# ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Application definition
-
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO','https')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
