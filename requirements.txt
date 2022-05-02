@@ -39,4 +39,4 @@ static3==0.7.0
 tzdata==2021.5
 urllib3==1.26.9
 webencodings==0.5.1
-# whitenoise==6.0.0
+whitenoise==6.0.0
