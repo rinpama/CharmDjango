@@ -150,7 +150,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'asset'), ]  # 共通スタティッ�
 # 本番環境(Debug=False)＝＞django.contrib.staticfilesがapp/staticファイルの配信を止めるので、collectstaticで1ヶ所に集める
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 # ↓ AWS S3　どちらかを使う
-# STATIC_URL = '/static/'  # スタティックファイルの URL を指定します。
+STATIC_URL = '/static/'  # スタティックファイルの URL を指定します。
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # AWS S3
@@ -158,7 +158,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com'% AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = 'https://%s.s3.amazonaws.com'% AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400',}
 AWS_LOCATION = 'static'
 AWS_DEFAULT_ACL = None
