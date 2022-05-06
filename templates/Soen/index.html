@@ -3,11 +3,13 @@
 
 {% block loginout %}
     <div class="col-md-auto" style="height:50px;">
-        <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>
+{#        <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>#}
+
     </div>
 {% endblock %}
 
 {% block nav %}
+    <a href="{% url 'accounts:login' %}">login</a>
     <h2>株式会社 装苑</h2>
     <h4>装苑</h4>
     <li>SoenMember</li>
