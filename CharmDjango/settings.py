@@ -148,7 +148,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'asset'), ]  # 共通スタティッ�
 #各app直下のstaticディレクトリから、 django.contrib.staticfilesを使い、runserver実行時に自動的に各staticﾌｧｲﾙを配信
 
 # 本番環境(Debug=False)＝＞django.contrib.staticfilesがapp/staticファイルの配信を止めるので、collectstaticで1ヶ所に集める
-# STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # ↓ AWS S3　どちらかを使う
 # STATIC_URL = '/static/'  # スタティックファイルの URL を指定します。
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
