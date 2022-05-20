@@ -175,7 +175,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/logmain'
-LOGOUT_REDIRECT_URL = '/accounts/login'  # ''
+LOGOUT_REDIRECT_URL = '/accounts/login'  #
 
 if not DEBUG:
     import django_heroku
