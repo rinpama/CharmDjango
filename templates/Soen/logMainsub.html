@@ -12,21 +12,21 @@
 
 
 {% block main %}
-        <h2>株式会社 装苑</h2>
+    <h2>株式会社 装苑</h2>
     <h4>装苑</h4>
     <a href="{% url 'Soen:Vlogsmemlist' %}">
         <li>SoenMember</li>
     </a>
     <h5>･工事現場書類</h5>
-    <a href="{% url 'Show:VlogsekoList' %}">
-        <li>施工体制台帳</li>
-    </a>
-    <a href="">
-        <li>作業員名簿</li>
-    </a>
     <a href="{% url 'reimex:top' %}">
-        <li>各種提出書類</li>
+        <li>施工体制　LIST</li>
     </a>
+    <a href="{% url 'Show:VlogsekoList' %}">
+        <li>施工体制台帳 編集</li>
+    </a>
+    <li>作業員名簿</li>
+    <li>各種提出書類</li>
+
     <h5>･社内書類</h5>
     <a href="">
         <li>工事発注届</li>
@@ -85,8 +85,7 @@
         <li>材料価格DB</li>
     </a>
     <h5>考察</h5>
-    <a href="{% url 'm3ch:top' %}">
-        <li>いろいろ</li>
+    <li>いろいろ</li>
     </a>
 {% endblock %}
 

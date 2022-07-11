@@ -2,19 +2,21 @@
 {% load static %}
 
 {% block loginout %}
-    <div class="col-md-auto" style="height:50px;">
-{#        <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>#}
-
+    <div style="height:50px;">
     </div>
 {% endblock %}
 
 {% block nav %}
-{#    <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
     <a href="{% url 'accounts:login' %}">login</a>
-    <h2>株式会社 装苑</h2>
-    <h4>装苑</h4>
+
+    <h3>株式会社 装苑</h3>
+
+    <div style="border:double 5px #0000ff; width:100px; text-align:center;font-family: 'BIZ UDP明朝 Medium'">装  苑</div>
     <li>SoenMember</li>
-    <h5>･工事現場書類</h5>
+    <a href="">
+        <li>見積単価</li>
+    </a>
+    <div style="border:double 5px #0000ff; width:100px; text-align:center;font-family: 'BIZ UDP明朝 Medium'">工事現場書類</div>
     <a href="{% url 'Show:VsekoList' %}">
         <li>施工体制台帳</li>
     </a>
@@ -24,7 +26,8 @@
     <a href="">
         <li>各種提出書類</li>
     </a>
-    <h5>･社内書類</h5>
+
+    <div style="border:double 5px #0000ff; width:100px; text-align:center;font-family: 'BIZ UDP明朝 Medium'">社内書類</div>
     <a href="">
         <li>工事発注届</li>
     </a>
@@ -34,7 +37,8 @@
     <a href="">
         <li>実行予算書作成</li>
     </a>
-    <h5>･社員DB</h5>
+
+    <div style="border:double 5px #0000ff; width:100px; text-align:center;font-family: 'BIZ UDP明朝 Medium'">社員DB</div>
     <a href="">
         <li>健康診断</li>
     </a>
@@ -44,14 +48,15 @@
     <a href="">
         <li>資格</li>
     </a>
-    <h5>協力会社DB</h5>
+
+    <div style="border:double 5px #0000ff; width:100px; text-align:center;font-family: 'BIZ UDP明朝 Medium'">協力会社DB</div>
     <a href="">
         <li>DB</li>
     </a>
 {% endblock %}
 
 {% block main %}
-{#    <img src="{% static 'Soen/image/20190807_104336.jpg' %}" width="200px" alt="サンプル写真">#}
+    {#    <img src="{% static 'Soen/image/20190807_104336.jpg' %}" width="200px" alt="サンプル写真">#}
     <hr>
     <table>
         <tr>
@@ -106,6 +111,6 @@
 
 {% block sideB %}
     <div class="sideB">
-    <h1>sideB</h1>
+        <h1>sideB</h1>
     </div>
 {% endblock %}

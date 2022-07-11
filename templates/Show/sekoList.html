@@ -3,17 +3,19 @@
 
 {#{% block header %}#}
 {#{% endblock %}#}
+
 {% block loginout %}
-    <div class="col-md-auto" style="height:50px;">
+    <div style="height:50px;">
         <a class="btn btn-info" href="{% url 'accounts:login' %}" role="button">login</a>
     </div>
 {% endblock %}
+
 {#{% block nav %}#}
 {#{% endblock %}#}
 
 {% block main %}
     <a href="{% url 'accounts:login' %}" role="button">login</a>
-    {{ msg }}
+{#    {{ msg }}#}
     <table>
         <tr>
             <td></td>

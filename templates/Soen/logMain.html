@@ -1,17 +1,14 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
+
 {% block header %}
     <header>
         <div class="row " style="background-color:#059b08; height:50px;">
             <div class="col text-primary">
                 <a class="text-decoration-none" href="{% url 'Soen:Vlogmain' %} "><h1>Soen</h1></a>
             </div>
-            {% block loginout %}
-    <div class="col-md-auto" style="height:50px;">
-        <a class="btn btn-info" href="{% url 'Soen:Vindex' %}" role="button">ログアウト</a>
-    </div>
-{% endblock %}
+
             <div class="col col-lg-2">
                 <h5 class="text-end">twelve
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -21,6 +18,11 @@
                 </h5>
             </div>
         </div>
+        {% block loginout %}
+            <div class="col-md-auto" style="height:50px;">
+                <a class="btn btn-info" href="{% url 'Soen:Vindex' %}" role="button">ログアウト</a>
+            </div>
+        {% endblock %}
     </header>
 {% endblock %}
 
@@ -32,8 +34,8 @@
 {% block main %}
     <div class="row mt-100px">
         <div class="card" style="width: 18rem;">
-{#            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
-                 alt="201909写真">
+            {#            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
+{#            alt="201909写真">#}
             <div class="card-body">
                 <h5 class="card-title">装苑</h5>
                 <p class="card-text">
@@ -48,8 +50,8 @@
     </div>
     <div class="row mt-100px">
         <div class="card" style="width: 18rem;">
-{#            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
-                 alt="201909写真">
+            {#            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
+{#            alt="201909写真">#}
             <div class="card-body">
                 <h5 class="card-title">装苑</h5>
                 <p class="card-text">
@@ -64,8 +66,8 @@
     </div>
     <div class="row mt-100px">
         <div class="card" style="width: 18rem;">
-{#            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
-                 alt="201909写真">
+            {#            <img src="{% static 'm3ch/image/20190914_092227.jpg' %}" width="" height="200" class="card-img-top"#}
+{#            alt="201909写真">#}
             <div class="card-body">
                 <h5 class="card-title">装苑</h5>
                 <p class="card-text">
@@ -74,7 +76,6 @@
                 <ul>現場材料手配</ul>
                 <ul>DB他</ul>
                 <br><br><br>
-                <ul><a class="text-bottom" href="{% url 'm3ch:top' %}">m3ch/Top</a><br></ul>
             </div>
         </div>
     </div>

@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_summernote',
     'accounts',
-    'm3ch',
     'Soen',
     'Show',
     'actualSpot',

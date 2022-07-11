@@ -10,18 +10,19 @@
 
 {% block main %}
     {{ msg|safe }}<br>
-    <table>
-        現場名：　{{ data.AsName }}<br>
-        ｾﾞﾈｺﾝ名：　{{ data.AsCompany }}<br>
-        現場住所：　{{ data.AsManager }}<br>
-        郵便番号：　{{ data.AsPostcode }}<br>
-        現場住所：　{{ data.AsAddress }}<br>
-        電話番号：　{{ data.Astel }}<br>
-        工事内容：　{{ data2.ConstractionDetails }}<br>
-        工事契約日：　{{ data2.ContractDate  }}<br>
-        工期開始：　{{ data2.StartDate }}<br>
-        工期終了：　{{ data2.EndDate }}<br>　
+    <table style="border:5px #8cff00 solid;">
+
+    <tr><th>現 場 名：</th><td>{{ data.AsName }}</td></tr>
+        <tr><th style="border:1px #8cff00 solid;">ｾﾞﾈｺﾝ 名：</th><td style="border:5px #8cff00 solid; width:auto;">　{{ data.AsCompany }}</td></tr>
+        <tr><th style="border:2px #8cff00 solid;">現場住所：</th><td style="border:5px #8cff00 solid; width:300px;">　{{ data.AsManager }}</td></tr>
+        <tr><th style="border:3px #8cff00 solid;">郵便番号：</th><td style="border:5px #8cff00 solid; width:300px;">{{ data.AsPostcode }}</td></tr>
+        <tr><th style="border:4px #8cff00 solid;">現場住所：</th><td style="border:5px #8cff00 solid; width:300px;">{{ data.AsAddress }}</td></tr>
+        <tr><th style="border:5px #8cff00 solid;">電話番号：</th><td style="border:5px #8cff00 solid; width:300px;">　{{ data.Astel }}</td></tr>
+        <tr><th style="border:5px #8cff00 solid;">工事内容：</th><td style="border:4px #8cff00 solid; width:300px;">{{ data2.ConstractionDetails }}</td></tr>
+        <tr><th style="border:5px #8cff00 solid;">工事契約日：</th><td style="border:3px #8cff00 solid; width:300px;">{{ data2.ContractDate }}</td></tr>
+        <tr><th style="border:5px #8cff00 solid;">工期開始：</th><td style="border:2px #8cff00 solid; width:300px;">{{ data2.StartDate }}</td></tr>
+        <tr><th style="border:5px #8cff00 solid;">工期終了：</th><td style="border:1px #8cff00 solid; width:300px;">{{ data2.EndDate }}</td></tr>
     </table>
     <br> <a class="text-bottom" href="{% url 'Show:VsekoList' %}">現場List</a><br>
-    <br> <a class="text-bottom" href="{% url 'Soen:Vindex' %}">Top</a><br>
+    <br> <a href="{% url 'Soen:Vindex' %}">Top</a><br>
 {% endblock %}

@@ -27,7 +27,6 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('accounts/', include('accounts.urls')),
                   path('', include('Soen.urls')),
-                  path('m3ch/', include('m3ch.urls')),
                   path('show/', include('Show.urls')),
                   path('summernote/', include('django_summernote.urls')),
                   # path('markdownx/', include('markdownx.urls')),
@@ -45,8 +44,6 @@ if settings.DEBUG:
 
 # ↓　deploy時のDEBUG確認(settings & app.views に配置)
 from Soen.views import my_customized_server_error
-handler500 = my_customized_server_error
-from m3ch.views import my_customized_server_error
 handler500 = my_customized_server_error
 from Show.views import my_customized_server_error
 handler500 = my_customized_server_error
