@@ -1,0 +1,83 @@
+{% extends 'Number/AAnumberBase.html' %}
+{% load static %}
+
+{% block cssstyle %}
+    <style>
+        .container10 {
+            display: grid; /* グリッドレイアウト minmax(660px,auto) */
+            grid-template-rows: minmax(800px, auto);
+            grid-template-columns: 250px 250px 250px 250px;
+        }
+
+        /*main1/4*/
+        #itemW {
+            grid-column: 1 / 2;
+        }
+
+        /*main2/4*/
+        #itemX {
+            grid-column: 2 / 3;
+        }
+
+        /*main3/4*/
+        #itemY {
+            grid-column: 3 / 4;
+        }
+
+        /*main4/4*/
+        #itemZ {
+            grid-column: 4 / 5;
+        }
+    </style>
+{% endblock %}
+{#{% block meta_description %}{% endblock %}#}
+{{ title }}
+
+{% block navA %}
+    List PartsList
+    <ul>
+        <li><a href="{% url 'Number:topView' %}">(top)</a></li>
+        <li><a href="{% url 'Number:inputSteelP' %}">(cp)</a></li>
+    </ul>
+{% endblock %}
+
+{% block main %}
+    <div class="container10">
+        <div id="itemW">
+        ●軽鉄下地　材料価格
+            {% for i in data %}
+                <ul><li>
+                <a href="{% url 'Number:listSteelParts'  i.id  %}">{{ i.firstDay }}～</a>
+                </li></ul>
+            {% endfor %}
+        </div>
+        <div id="itemX">
+            <UL>
+{#                <lI><a href="{% url 'Number:listSteelParts' %}">ﾎﾞｰﾄﾞ　最新物価</a></lI>#}
+                <br>
+                <lI><a href="">ﾎﾞｰﾄﾞ　過去物価1</a></lI>
+                <lI><a href="">ﾎﾞｰﾄﾞ　過去物価2</a></lI>
+                <lI><a href="">ﾎﾞｰﾄﾞ　過去物価3</a></lI>
+            </UL>
+        </div>
+        <div id="itemY">
+            <UL>
+{#                <lI><a href="{% url 'Number:listSteelParts' %}">ﾋﾞﾆﾙｸﾛｽ　最新物価</a></lI>#}
+                <br>
+                <lI><a href="">ﾋﾞﾆﾙｸﾛｽ　過去物価1</a></lI>
+                <lI><a href="">ﾋﾞﾆﾙｸﾛｽ　過去物価2</a></lI>
+                <lI><a href="">ﾋﾞﾆﾙｸﾛｽ　過去物価3</a></lI>
+            </UL>
+        </div>
+        <div id="itemZ">
+            <UL>
+{#                <lI><a href="{% url 'Number:listSteelParts' %}">床仕上材　最新物価</a></lI>#}
+                <br>
+                <lI><a href="">床仕上　過去物価1</a></lI>
+                <lI><a href="">床仕上　過去物価2</a></lI>
+                <lI><a href="">床仕上　過去物価3</a></lI>
+            </UL>
+        </div>
+    </div>
+
+{% endblock %}

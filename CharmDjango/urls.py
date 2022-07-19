@@ -32,6 +32,7 @@ urlpatterns = [
                   # path('markdownx/', include('markdownx.urls')),
                   path('actualSpot/', include('actualSpot.urls')),
                   path('reimex/', include('reimex.urls')),
+                  path('number/', include('Number.urls')),
               ] \
               + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
@@ -41,13 +42,16 @@ if settings.DEBUG:
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT)
 
-
 # ↓　deploy時のDEBUG確認(settings & app.views に配置)
 from Soen.views import my_customized_server_error
+
 handler500 = my_customized_server_error
 from Show.views import my_customized_server_error
+
 handler500 = my_customized_server_error
 from actualSpot.views import my_customized_server_error
+
 handler500 = my_customized_server_error
 from reimex.views import my_customized_server_error
+
 handler500 = my_customized_server_error

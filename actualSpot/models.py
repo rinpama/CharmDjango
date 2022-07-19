@@ -183,8 +183,8 @@ class Aspot(models.Model):
     X = models.IntegerField(verbose_name="X次", default='1')
     XSubcontractor = models.ForeignKey(mostRecent, null=True, blank=True, on_delete=models.PROTECT)  # 基本装苑
     Xx = models.IntegerField(verbose_name="Xx次", default='2')
-    XxSubcontractor = models.ForeignKey(SoenModel, null=True, blank=True, on_delete=models.PROTECT)  # 協力会社
-
+    # XxSubcontractor = models.ForeignKey(SoenModel, null=True, blank=True, on_delete=models.PROTECT)  # 協力会社
+    XxSubcontractor = models.ManyToManyField(SoenModel)  # 協力会社
     def __str__(self):
         return self.spotName
 

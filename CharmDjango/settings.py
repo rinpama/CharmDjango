@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'Show',
     'actualSpot',
     'reimex',
+    'Number',
 
     'storages',
 ]

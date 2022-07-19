@@ -117,7 +117,10 @@ def aspotToExcel(self):
     # print(wb)
     return redirect('actualSpot:spotlist')
 # **********************************************************************
-
+from .application.pricedata import MakeBasePrice_module
+def MakeBasePrice():
+    MakeBasePrice_module.func()
+    return redirect(to='actualspot:spotlist')
 
 
 

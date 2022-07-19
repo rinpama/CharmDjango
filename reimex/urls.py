@@ -15,6 +15,7 @@ urlpatterns = [
     path('testprint', views.testprint, name='testdo'),
     path('aspot', views.aspot, name='aspot'),
     path('aspotToExcel', views.aspotToExcel, name='aspotToExcel'),
+    path('makebaseprice', views.MakeBasePrice, name='makebaseprice'),
 
     path('memFalse', views.memFalse, name='memFalse'),
     path('onlymemFalse', views.onlymemFalse, name='onlymemFalse'),
