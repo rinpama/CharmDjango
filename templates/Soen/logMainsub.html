@@ -74,16 +74,24 @@
     <a href="">
         <li>健康･年金保険･建退協</li>
     </a>
+
+
+
     <h5>･材料構成</h5>
-    <a href="">
-        <li>材料構成</li>
+    <a href="{% url 'Number:calcdescriptionnumber' %}">
+        <li>材料構成（memo:留意事項）</li>
     </a>
-    <a href="">
-        <li>部材特徴</li>
-    </a>
-    <a href="{% url 'Number:topView' %}">
-        <li>材料価格DB</li>
-    </a>
+
+    <li>csvData
+        <a href="">Import</a>
+        &
+        <a href="">Export</a>
+    </li>
+
+    <a href="{% url 'Number:topView' %}"><li>材料価格DB</li></a>
+
+
+
     <h5>考察</h5>
     <li>いろいろ</li>
     </a>

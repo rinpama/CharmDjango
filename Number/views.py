@@ -10,6 +10,12 @@ def topView(request):#Number トップページ
     }
     return render(request,'Number/numberTop.html',params)
 
+def calcDescriptionNumber(request):
+    params={
+        'title':'計算番号検索⇒[ctrl]+[F]？',
+    }
+    return render(request,'Number/calcDescriptionNumber.html',params)
+
 def InputWages(request):
     params={
         'title':'Input Wages',

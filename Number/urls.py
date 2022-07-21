@@ -8,6 +8,6 @@ path('inputWages', InputWages, name='inputWages'),
     path('inputSteelP', InputSteelParts, name='inputSteelP'),
     path('listPartsList', ListPartsList, name='listPartsList'),
     path('listSteelParts/<int:number>/', ListSteelParts, name='listSteelParts'),
-
+    path('calcdescription',calcDescriptionNumber,name='calcdescriptionnumber'),
 # path('makeEstimatedUnitprice', makeEstimatedUnitprice, name='makeEstimatedUnitprice'),
 ]
