@@ -1,3 +1,4 @@
+from ..priceScripts import subcalc
 def func(data, data2, wagesUp, partsUp, *args, **kwargs):
     X = int(data.SM)
     Y = int(data.SM)
@@ -8,10 +9,11 @@ def func(data, data2, wagesUp, partsUp, *args, **kwargs):
 
     keiten = X + Y * Z - 100 + A + B * C - 100
     majikiri = X * 100 + Y * 300
-
+    M=subcalc.subcalc()
     answer = {
         'keiten': keiten,
         'majikiri': majikiri,
+        'M':M,
     }
     return answer
 
